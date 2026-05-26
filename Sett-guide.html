@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sett Guide | คู่มือแชมเปี้ยน The Boss</title>
+    <style>
+        /* ล้างค่าเริ่มต้นและตั้งค่าฟอนต์ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b070d;
+            color: #f0e6d2;
+            line-height: 1.6;
+        }
+
+        /* ส่วนหัว (Header) - ใช้ภาพและธีมของ Sett */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(11, 7, 13, 1)), url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sett_0.jpg') no-repeat center center/cover;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 3px solid #ffb900;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            color: #ffb900;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 0px 0px 15px rgba(255, 185, 0, 0.6);
+            letter-spacing: 2px;
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            color: #d11e48;
+            margin-bottom: 15px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        /* ส่วนเนื้อหาหลัก */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #ffb900;
+            border-bottom: 2px solid #d11e48;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        /* Сรุปข้อมูลแชมเปี้ยน */
+        .intro-box {
+            background-color: #160f1c;
+            border: 1px solid #2a1b33;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* รายละเอียดสกิล (Skills) */
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .skill-card {
+            background-color: #160f1c;
+            border: 1px solid #42283b;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .skill-card {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        .skill-card:hover {
+            border-color: #ffb900;
+            background-color: #1f1429;
+        }
+
+        .skill-header {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            align-self: flex-start;
+        }
+
+        .skill-icon-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .skill-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 4px;
+            border: 2px solid #42283b;
+            display: block;
+        }
+
+        .skill-key {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background-color: #ffb900;
+            color: #0b070d;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            min-width: 24px;
+            text-align: center;
+            border: 1px solid #0b070d;
+        }
+
+        .skill-info {
+            flex: 1;
+        }
+
+        .skill-info h3 {
+            color: #ffb900;
+            margin-bottom: 8px;
+        }
+
+        /* ส่วนแสดงวิดีโอสกิล */
+        .skill-video-container {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #2a1b33;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            transition: border-color 0.3s;
+        }
+
+        .skill-card:hover .skill-video-container {
+            border-color: #ffb900;
+        }
+
+        @media (min-width: 768px) {
+            .skill-video-container {
+                width: 320px;
+                max-width: 320px;
+                flex-shrink: 0;
+            }
+        }
+
+        .skill-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ตารางไอเทมแนะนำ */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #160f1c;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #42283b;
+        }
+
+        th {
+            background-color: #2a1b33;
+            color: #ffb900;
+        }
+
+        tr:hover {
+            background-color: #23182e;
+        }
+
+        /* จัดระเบียบกล่องใส่ไอเทมให้เรียงแนวนอน */
+        .item-display-flex {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 5px 0;
+        }
+
+        /* เซ็ตติ้งสำหรับโครงสร้างของไอเทมและการ Hover Tooltip */
+        .item-img-wrap {
+            position: relative;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .item-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            border: 1px solid #ffb900;
+            display: block;
+            box-shadow: 0 0 8px rgba(255, 185, 0, 0.2);
+            cursor: pointer;
+        }
+
+        /* โครงสร้างกล่องข้อความความสามารถ (Tooltip) */
+        .item-img-wrap .tooltip-box {
+            position: absolute;
+            bottom: 135%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background-color: #2a1b33;
+            color: #f0e6d2;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ffb900;
+            font-size: 0.85rem;
+            width: 290px;
+            text-align: left;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+        }
+
+        /* ตัวลูกศรชี้ลงด้านล่างของ Tooltip */
+        .item-img-wrap .tooltip-box::before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #ffb900 transparent transparent transparent;
+        }
+
+        /* รูนดีไซน์ใหม่ */
+        .runes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .runes-container {
+                flex-direction: row;
+            }
+        }
+
+        .rune-tree {
+            flex: 1;
+            background-color: #160f1c;
+            border: 1px solid #2a1b33;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .tree-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid #42283b;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tree-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .tree-header h3 {
+            color: #ffb900;
+            font-size: 1.3rem;
+        }
+
+        .rune-row {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .rune-row:hover {
+            background-color: #23182e;
+        }
+
+        .rune-icon {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background-color: #0b070d;
+            border: 1px solid #42283b;
+        }
+
+        .rune-icon.big {
+            width: 55px;
+            height: 55px;
+            border: 2px solid #ffb900;
+        }
+
+        .rune-detail strong {
+            color: #ffb900;
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .rune-detail p {
+            font-size: 0.9rem;
+            color: #dcbce3;
+            line-height: 1.4;
+        }
+
+        /* กล่องสเตตัสเสริม */
+        .shards-box {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #42283b;
+        }
+
+        .shards-box h4 {
+            color: #ffb900;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .shards-box ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #f0e6d2;
+        }
+
+        /* ส่วนหัวภายใน Tooltip */
+        .tooltip-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #42283b;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+        }
+
+        .tooltip-item-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            border: 1px solid #ffb900;
+        }
+
+        .tooltip-header strong {
+            color: #ffb900;
+            font-size: 1rem;
+        }
+
+        /* รายละเอียดเนื้อหาภายใน Tooltip */
+        .tooltip-body ul {
+            list-style: none;
+            margin: 4px 0 10px 0;
+            color: #dcbce3;
+        }
+
+        .tooltip-body ul li {
+            margin-bottom: 2px;
+        }
+
+        .stats-title,
+        .effect-title {
+            color: #ffb900;
+            font-weight: bold;
+            display: block;
+        }
+
+        .tooltip-body p {
+            margin-top: 4px;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: #f0e6d2;
+        }
+
+        /* เอฟเฟกต์ตอนเม้าส์ Hover ให้ Tooltip แสดงขึ้นมา */
+        .item-img-wrap:hover .tooltip-box {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* กล่องเทคนิคการเล่น */
+        .tips-box {
+            background-color: rgba(255, 185, 0, 0.05);
+            border-left: 5px solid #ffb900;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tips-box ul {
+            list-style-position: inside;
+            margin-top: 10px;
+        }
+
+        .tips-box li {
+            margin-bottom: 8px;
+        }
+
+        /* ส่วนท้าย (Footer) */
+        footer {
+            background-color: #060408;
+            text-align: center;
+            padding: 20px;
+            color: #7e7e7e;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a1b33;
+        }
+
+        .back-to-home {
+            position: absolute;
+            /* หรือใช้ fixed ถ้าต้องการให้ปุ่มลอยตามตอนเลื่อนหน้าจอลงมา */
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #c8aa6e;
+            /* สีทองสไตล์คลาสสิกของ LoL */
+            background-color: rgba(22, 11, 19, 0.85);
+            /* สีพื้นหลังม่วงอมแดงเข้มๆ แบบบาร์ใต้ดิน */
+            padding: 8px 16px;
+            border: 1px solid #5c1e24;
+            /* ขอบสีแดงเลือดหมูเข้ม */
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 100;
+            /* อยู่เหนือ Layer อื่นๆ */
+            backdrop-filter: blur(4px);
+        }
+
+        .back-to-home svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        /* เอฟเฟกต์ตอนเม้าส์ Hover - ระเบิดพลังหมัดส้มทอง */
+        .back-to-home:hover {
+            color: #ff9900;
+            /* สีส้มทองสว่าง */
+            border-color: #ff6600;
+            /* ขอบส้มเพลิง */
+            background-color: rgba(92, 30, 36, 0.3);
+            /* พื้นหลังอมแดงโปร่งแสง */
+            box-shadow: 0 0 12px rgba(255, 102, 0, 0.5), 0 0 4px rgba(200, 170, 110, 0.3);
+        }
+
+        /* ให้ลูกศรพุ่งถอยหลังกระแทกแบบดุดันตอน Hover */
+        .back-to-home:hover svg {
+            transform: translateX(-5px);
+        }
+
+        /* ปรับแต่งความลื่นไหลสำหรับหน้าจอมือถือ */
+        @media (max-width: 480px) {
+            .back-to-home {
+                top: 15px;
+                left: 15px;
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .back-to-home span {
+                display: none;
+                /* ซ่อนตัวหนังสือ เหลือแค่ลูกศรทองบนจอเล็ก */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="back-to-home" title="กลับสู่หน้าหลัก">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>หน้าหลัก</span>
+    </a>
+
+    <header>
+        <h1>Sett</h1>
+        <div class="subtitle">The Boss</div>
+        <p>แชมเปี้ยนตำแหน่ง Top สาย Juggernaut ผู้ทรงพลัง
+            โดดเด่นในการยืนระยะ ดวลหมัดสุดดุดัน และการเปลี่ยนความเสียหายที่ได้รับให้กลายเป็นพลังหมัดสวนกลับสุดช็อกโลก
+        </p>
+    </header>
+
+    <div class="container">
+
+        <section id="overview">
+            <h2>ข้อมูลเบื้องต้น (Overview)</h2>
+            <div class="intro-box">
+                <p><strong>ตำแหน่งหลัก:</strong> Top Lane (เลนบน)</p>
+                <p><strong>สไตล์การเล่น:</strong> เป็นไฟต์เตอร์สายชนแนวหน้าที่มีพลังทำลายล้างระยะประชิดสูงมาก
+                    ยิ่งเขาได้รับความเสียหายมากเท่าไหร่ สกิลสวนกลับของเขาก็จะยิ่งรุนแรงขึ้นเท่านั้น
+                    ทำหน้าที่เปิดทีมไฟต์และบดขยี้แนวหลังของศัตรูให้ราบคาบ</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>สกิลความสามารถ (Abilities)</h2>
+            <div class="skill-list">
+
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/Sett_Pit_Grit.png?b4ebb"
+                                alt="Pit Grit Icon" class="skill-icon">
+                            <div class="skill-key">P</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Pit Grit</h3>
+                        <p><strong>Heavy Hands:</strong> การโจมตีปกติของ Sett จะสลับระหว่างหมัดซ้ายและหมัดขวา
+                            โดยหมัดขวาจะชกได้รวดเร็วและรุนแรงกว่าหมัดซ้าย <br>
+                            <strong>Heart of the Half-Beast:</strong>
+                            ได้รับอัตราการฟื้นฟูพลังชีวิตเพิ่มขึ้นอย่างมากตามเปอร์เซ็นต์พลังชีวิตที่หายไป
+                        </p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0875/ability_0875_P1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/spell/SettQ.png"
+                                alt="Knuckle Down Icon" class="skill-icon">
+                            <div class="skill-key">Q</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Knuckle Down</h3>
+                        <p>Sett กระหายการต่อสู้ วิ่งเร็วขึ้นเป็นเวลา 1.5 วินาทีเมื่อวิ่งเข้าหาแชมเปี้ยนศัตรู
+                            และทำให้การโจมตีปกติ 2
+                            ครั้งถัดไปสร้างโบนัสความเสียหายกายภาพเพิ่มเติมตามพลังชีวิตสูงสุดของเป้าหมาย</p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0875/ability_0875_Q1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/spell/SettW.png"
+                                alt="Haymaker Icon" class="skill-icon">
+                            <div class="skill-key">W</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Haymaker</h3>
+                        <p><strong>ติดตัว:</strong> เปลี่ยนความเสียหายที่ได้รับให้กลายเป็นค่า Grit
+                            (สะสมได้สูงสุดตามสัดส่วนเลือด) <br>
+                            <strong>กดใช้:</strong> ปลดปล่อยหมัดสวนกลับเป็นคลื่นพลังช็อกเวฟขนาดใหญ่
+                            ศัตรูที่อยู่ตรงกลางจะได้รับ **ความเสียหายจริง (True Damage)**
+                            พร้อมทั้งได้รับโล่ป้องกันตามจำนวน Grit ที่ใช้ไป
+                        </p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0875/ability_0875_W1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/spell/SettE.png"
+                                alt="Facebreaker Icon" class="skill-icon">
+                            <div class="skill-key">E</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Facebreaker</h3>
+                        <p>ดึงศัตรูที่อยู่ทั้งสองข้างเข้าหากัน ทำความเสียหายและสโลว์เป้าหมาย
+                            หากมีศัตรูโดนดึงมาจากทั้งสองฝั่ง (ซ้ายและขวา) ศัตรูทั้งหมดจะถูก **สตัน (Stun)** แทน</p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0875/ability_0875_E1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/spell/SettR.png"
+                                alt="The Showstopper Icon" class="skill-icon">
+                            <div class="skill-key">R</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>The Showstopper (ท่าไม้ตาย)</h3>
+                        <p> Sett จับแชมเปี้ยนศัตรูยกขึ้นฟ้าแล้วทุ่มลงพื้นอย่างรุนแรง ศัตรูรอบๆ
+                            จุดตกจะได้รับความเสียหายกายภาพตาม **โบนัสพลังชีวิตของศัตรูที่ถูกทุ่ม** และถูกสโลว์ 99%
+                            เป็นเวลา 1 วินาที</p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0875/ability_0875_R1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="runes">
+            <h2>รูนแนะนำ (Recommended Runes)</h2>
+            <div class="runes-container">
+                <div class="rune-tree main-tree">
+                    <div class="tree-header">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png"
+                            alt="Precision" class="tree-icon">
+                        <h3>สายหลัก: Precision</h3>
+                    </div>
+                    <div class="rune-row keystone">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Conqueror/Conqueror.png"
+                            alt="Conqueror" class="rune-icon big">
+                        <div class="rune-detail">
+                            <strong>Conqueror (Keystone)</strong>
+                            <p>โจมตีปกติและใช้สกิลคอมโบซ้าย-ขวาเพื่อสะสมพลังโจมตี เมื่อครบ 12 ขั้น
+                                จะเปลี่ยนความเสียหายส่วนหนึ่งมาฮีลตัวเอง ช่วยให้ Sett ยืนแลกหมัดได้นานขึ้นมาก</p>
+                        </div>
+                    </div>
+                    <div class="rune-row">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Triumph.png"
+                            alt="Triumph" class="rune-icon">
+                        <div class="rune-detail">
+                            <strong>Triumph</strong>
+                            <p>เมื่อโค่นล้มศัตรูได้ จะฟื้นฟูพลังชีวิต 10% ของพลังชีวิตที่หายไป
+                                ช่วยให้รอดตายในจังหวะทีมไฟต์หวาดเสียวได้อย่างหวุดหวิด</p>
+                        </div>
+                    </div>
+                    <div class="rune-row">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png"
+                            alt="Legend: Alacrity" class="rune-icon">
+                        <div class="rune-detail">
+                            <strong>Legend: Alacrity</strong>
+                            <p>เพิ่มความเร็วในการโจมตีแบบถาวรจากการเก็บแต้มคิล ช่วยให้ Sett
+                                ต่อยคอมโบหมัดซ้าย-ขวาได้ลื่นไหลและรวดเร็วยิ่งขึ้น</p>
+                        </div>
+                    </div>
+                    <div class="rune-row">
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/Last_Stand_rune.png" alt="Last Stand"
+                            class="rune-icon">
+                        <div class="rune-detail">
+                            <strong>Last Stand</strong>
+                            <p>ทำความเสียหายเพิ่มขึ้นเมื่อพลังชีวิตต่ำลง คอมโบร่วมกับสกิล W (Haymaker) ตอนค่า Grit
+                                เต็มหลอดได้อย่างสมบูรณ์แบบ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rune-tree sub-tree">
+                    <div class="tree-header">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png"
+                            alt="Resolve" class="tree-icon">
+                        <h3>สายรอง: Resolve</h3>
+                    </div>
+                    <div class="rune-row">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/SecondWind/SecondWind.png"
+                            alt="Second Wind" class="rune-icon">
+                        <div class="rune-detail">
+                            <strong>Second Wind</strong>
+                            <p>หลังจากได้รับความเสียหายจากแชมเปี้ยนศัตรู จะฟื้นฟูพลังชีวิตบางส่วนเมื่อเวลาผ่านไป
+                                ช่วยเพิ่มความถึกในเลนช่วงต้นเกม</p>
+                        </div>
+                    </div>
+                    <div class="rune-row">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/Overgrowth/Overgrowth.png"
+                            alt="Overgrowth" class="rune-icon">
+                        <div class="rune-detail">
+                            <strong>Overgrowth</strong>
+                            <p>ได้รับพลังชีวิตสูงสุดเพิ่มขึ้นอย่างถาวรเมื่อมีมินเนี่ยนหรือมอนสเตอร์ป่าตายใกล้ๆ
+                                เพิ่มความแรงให้กับเกราะและดาเมจของสกิล W</p>
+                        </div>
+                    </div>
+
+                    <div class="shards-box">
+                        <h4>Rune Shards (รูนสเตตัสเสริม)</h4>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                            <li style="display: flex; align-items: center; gap: 10px;">
+                                <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAttackSpeedIcon.png"
+                                    alt="Attack Speed"
+                                    style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                <span><strong>Offense:</strong> +10% ความเร็วโจมตี</span>
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 10px;">
+                                <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                    alt="Adaptive Force"
+                                    style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                <span><strong>Flex:</strong> +9 พลังโจมตี (Adaptive)</span>
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 10px;">
+                                <img src="https://cdn.mobalytics.gg/assets/lol/images/perks/5001.svg?v9" alt="Armor"
+                                    style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                <span><strong>Defense:</strong> +10-180 เลือด (ขึ้นอยู่กับเลเวล)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="summoner-spells">
+            <h2>คาถาอัญเชิญที่แนะนำ (Summoner Spells)</h2>
+            <div class="intro-box" style="display: flex; flex-direction: column; gap: 20px;">
+
+                <div style="display: flex; gap: 15px; align-items: flex-start;">
+                    <div class="item-img-wrap">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/SummonerFlash.png"
+                            alt="Flash" class="item-img" style="cursor: default;">
+                    </div>
+                    <div class="rune-detail">
+                        <strong style="color: #ffb900; font-size: 1.1rem;">Flash</strong>
+                        <p style="color: #dcbce3; font-size: 0.95rem;">
+                            เพื่อเคลื่อนย้ายแชมเปี้ยนของคุณไปยังตำแหน่งเป้าหมายในระยะทางสั้นๆ ใช้คอมโบร่วมกับสกิล E
+                            เพื่อเปิดสตันแบบไม่ทันตั้งตัว หรือใช้ Flash + W เพื่อปิดคิลด้วยดาเมจจริง
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    style="display: flex; gap: 15px; align-items: flex-start; padding-top: 15px; border-top: 1px dashed #42283b;">
+                    <div class="item-img-wrap">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/SummonerTeleport.png"
+                            alt="Teleport" class="item-img" style="cursor: default;">
+                    </div>
+                    <div class="rune-detail">
+                        <strong style="color: #ffb900; font-size: 1.1rem;">Teleport</strong>
+                        <p style="color: #dcbce3; font-size: 0.95rem;">ใช้ Teleport
+                            หากเล่นเลนบนเพื่อคุมมินเนี่ยนและเติมไฟต์</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="items">
+            <h2>ไอเทมแนะนำ (Recommended Items)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">ประเภทไอเทม</th>
+                        <th>ไอเทมแนะนำ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ไอเทม Core หลัก</strong></td>
+                        <td>
+                            <div class="item-display-flex">
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/item/3190.png"
+                                        alt="Stridebreaker" class="item-img">
+                                    <span class="tooltip-box">
+                                        <div class="tooltip-header">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/item/3190.png"
+                                                alt="Stridebreaker" class="tooltip-item-img">
+                                            <strong>Stridebreaker</strong>
+                                        </div>
+                                        <div class="tooltip-body">
+                                            <span class="stats-title">STATS:</span>
+                                            <ul>
+                                                <li>+50 พลังโจมตี</li>
+                                                <li>+30% ความเร็วโจมตี</li>
+                                                <li>+450 พลังชีวิต</li>
+                                            </ul>
+                                            <span class="effect-title">EFFECT (Breaking Shockwave):</span>
+                                            <p>กดใช้เพื่อสร้างความเสียหายรอบตัวและสโลว์ศัตรู 30% ช่วยให้วิ่งเข้าไปกดสกิล
+                                                E จับสตันได้ง่ายขึ้น</p>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3053.png"
+                                        alt="Sterak's Gage" class="item-img">
+                                    <span class="tooltip-box">
+                                        <div class="tooltip-header">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3053.png"
+                                                alt="Sterak's Gage" class="tooltip-item-img">
+                                            <strong>Sterak's Gage</strong>
+                                        </div>
+                                        <div class="tooltip-body">
+                                            <span class="stats-title">STATS:</span>
+                                            <ul>
+                                                <li>+400 พลังชีวิต</li>
+                                                <li>+50% พลังโจมตีพื้นฐาน</li>
+                                            </ul>
+                                            <span class="effect-title">EFFECT (Lifeline):</span>
+                                            <p>เมื่อได้รับความเสียหายหนักจนเลือดต่ำกว่า 30%
+                                                จะได้รับโล่ป้องกันขนาดใหญ่พร้อมต้านทานสถานะควบคุม</p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Full Build</strong></td>
+                        <td>
+                            <div class="item-display-flex">
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/item/3190.png"
+                                        alt="Stridebreaker" class="item-img">
+                                </div>
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3053.png"
+                                        alt="Sterak's Gage" class="item-img">
+                                </div>
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3071.png"
+                                        alt="Black Cleaver" class="item-img">
+                                    <span class="tooltip-box">
+                                        <div class="tooltip-header">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3071.png"
+                                                alt="Black Cleaver" class="tooltip-item-img">
+                                            <strong>Black Cleaver</strong>
+                                        </div>
+                                        <div class="tooltip-body">
+                                            <span class="stats-title">STATS:</span>
+                                            <ul>
+                                                <li>+50 พลังโจมตี</li>
+                                                <li>+400 พลังชีวิต</li>
+                                                <li>+20 เร่งความเร็วสกิล</li>
+                                            </ul>
+                                            <p>การโจมตีทางกายภาพจะช่วยลดเกราะของศัตรูลงสูงสุด 24%</p>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3742.png"
+                                        alt="Dead Man's Plate" class="item-img">
+                                    <span class="tooltip-box">
+                                        <div class="tooltip-header">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3742.png"
+                                                alt="Dead Man's Plate" class="tooltip-item-img">
+                                            <strong>Dead Man's Plate</strong>
+                                        </div>
+                                        <div class="tooltip-body">
+                                            <span class="stats-title">STATS:</span>
+                                            <ul>
+                                                <li>+300 พลังชีวิต</li>
+                                                <li>+45 เกราะ</li>
+                                                <li>+5% ความเร็วเคลื่อนที่</li>
+                                            </ul>
+                                            <p>สะสมความเร็วในการเคลื่อนที่ขณะวิ่ง
+                                                และจะปล่อยพลังทำความเสียหายพร้อมสโลว์ในการโจมตีครั้งแรก</p>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3026.png"
+                                        alt="Guardian Angel" class="item-img">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>ไอเทมตามสถานการณ์ <br>(Situation items)</br></strong></td>
+                        <td>
+                            <div class="item-display-flex">
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3075.png"
+                                        alt="Thornmail" class="item-img">
+                                    <span class="tooltip-box">
+                                        <div class="tooltip-header">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3075.png"
+                                                alt="Thornmail" class="tooltip-item-img">
+                                            <strong>Thornmail</strong>
+                                        </div>
+                                        <div class="tooltip-body">
+                                            <p>สะท้อนดาเมจและตัดฮีล (Grievous Wounds) เมื่อโดนศัตรูโจมตีปกติ
+                                                เหมาะกับเจอทีมสายเอดีและดูดเลือดสูง</p>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/4401.png"
+                                        alt="Force of Nature" class="item-img">
+                                    <span class="tooltip-box">
+                                        <div class="tooltip-header">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/4401.png"
+                                                alt="Force of Nature" class="tooltip-item-img">
+                                            <strong>Force of Nature</strong>
+                                        </div>
+                                        <div class="tooltip-body">
+                                            <p>เพิ่มพลังต้านทานเวทอย่างมากและความเร็วในการเคลื่อนที่เมื่อได้รับความเสียหายเวทต่อเนื่อง
+                                            </p>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>รองเท้า (Boots)</strong></td>
+                        <td>
+                            <div class="item-display-flex">
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3047.png"
+                                        alt="Plated Steelcaps" class="item-img">
+                                </div>
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3111.png"
+                                        alt="Mercury's Treads" class="item-img">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="tips">
+            <h2>เคล็ดลับการเล่นเพื่อไต่แรงค์</h2>
+            <div class="tips-box">
+                <p>เทคนิคที่จะทำให้คุณเป็น "เดอะบอส" บนสังเวียน:</p>
+                <ul>
+                    <li><strong>คอมโบดึงสตันสองฝั่ง (E):</strong>
+                        พยายามจัดตำแหน่งตัวเองในเลนให้อยู่ระหว่างมินเนี่ยนศัตรูและแชมเปี้ยนศัตรู จากนั้นใช้ E
+                        ดึงทั้งสองฝั่งเข้าหากันเพื่อรับการสตันแบบ 100% แล้วตามด้วยหมัดคอมโบ</li>
+                    <li><strong>ใจเย็นๆ กับการใช้ W (Haymaker):</strong> อย่าเพิ่งรีบกดใช้สกิล W ตั้งแต่เริ่มไฟต์
+                        ให้รอจนกระทั่งแถบพลัง Grit สีเหลืองใต้หลอดเลือดของคุณเต็มหลอด (หลอดจะเริ่มเรืองแสงสีทอง)
+                        ดาเมจตรงกลางจะเป็น True Damage ที่แรงพอจะพลิกสถานการณ์ได้ทันที</li>
+                    <li><strong>ทุ่มแทงค์กระแทกแนวหลัง (R):</strong> ในจังหวะทีมไฟต์ ให้รอแชมเปี้ยนสายแทงค์ตัวหนาๆ
+                        ของศัตรูเดินเข้ามา จากนั้นกดใช้ท่าไม้ตาย R ทุ่มแทงค์ตัวนั้นทะลุเข้าไปกลางวงแนวหลัง (ADC/Mage)
+                        ของศัตรู พลังชีวิตโบนัสที่สูงของแทงค์จะแปลงเป็นดาเมจมหาศาลระเบิดใส่แนวหลังทันที</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Sett Champion Guide. League of Legends Fanmade Guide</p>
+    </footer>
+
+    <script>
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        skillCards.forEach(card => {
+            const video = card.querySelector('video');
+
+            if (video) {
+                video.loop = true;
+                video.muted = true;
+
+                card.addEventListener('mouseenter', () => {
+                    video.play().catch(error => {
+                        console.log("Video play interrupted:", error);
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.currentTime = 0;
+                });
+
+                video.addEventListener('ended', () => {
+                    video.currentTime = 0;
+                    video.play().catch(error => console.log(error));
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
