@@ -1,23 +1,153 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
-    <title>LoL Champion Guides</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Guide for Beginners | คู่มือเล่น League of Legends</title>
     <style>
+        /* ล้างค่าเริ่มต้นและตั้งค่าฟอนต์ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            background-color: #060a0f; /* สีพื้นหลังเข้มแบบ LoL */
+            background-color: #0a0e13;
             color: #f0e6d2;
-            font-family: sans-serif;
             text-align: center;
             padding: 50px;
+            line-height: 1.6;
         }
-        h1 { color: #c8aa6e; }
+
+        /* ส่วนหัว (Header) */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt90bc1b91bc6b4b49/6216c5c06509f64df3ff35ed/ss22_keyart_lol_1920x1080.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 3px solid #c8aa6e;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: #c8aa6e;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        /* ส่วนเนื้อหาหลัก */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #c8aa6e;
+            border-bottom: 2px solid #c8aa6e;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        /* การจัดเลย์เอาต์แบบการ์ด (Positions) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #111823;
+            border: 1px solid #32281f;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #c8aa6e;
+        }
+
+        .card h3 {
+            color: #00bba3;
+            margin-bottom: 10px;
+        }
+
+        /* ตารางสรุปเป้าหมายในเกม */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #111823;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #32281f;
+        }
+
+        th {
+            background-color: #1c2735;
+            color: #c8aa6e;
+        }
+
+        tr:hover {
+            background-color: #17212e;
+        }
+
+        /* กล่องคำแนะนำพิเศษ */
+        .tips-box {
+            background-color: rgba(200, 170, 110, 0.1);
+            border-left: 5px solid #c8aa6e;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tips-box ul {
+            list-style-position: inside;
+            margin-top: 10px;
+        }
+
+        .tips-box li {
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            color: #c8aa6e;
+        }
+
         .menu-container {
             display: flex;
             justify-content: center;
             gap: 30px;
             margin-top: 40px;
         }
+
         .champ-card {
             border: 2px solid #c8aa6e;
             padding: 20px;
@@ -28,27 +158,135 @@
             transition: 0.3s;
             width: 200px;
         }
+
         .champ-card:hover {
             transform: translateY(-5px);
             border-color: #00bba3;
         }
+
+        /* ส่วนท้าย (Footer) */
+        footer {
+            background-color: #090c10;
+            text-align: center;
+            padding: 20px;
+            color: #7e7e7e;
+            font-size: 0.9rem;
+            border-top: 1px solid #32281f;
+        }
     </style>
 </head>
+
 <body>
 
-    <h1>เลือกแชมเปี้ยนที่ต้องการดูคู่มือ</h1>
-    
-    <div class="menu-container">
-        <a href="Sett-guide.html" class="champ-card">
-            <h3>Sett</h3>
-            <p>The Boss</p>
-        </a>
+    <!-- Header -->
+    <header>
+        <h1>League of Legends Guide</h1>
+        <p>ยินดีต้อนรับสู่ Summoner's Rift! คู่มือเริ่มต้นสำหรับผู้เล่นใหม่ เรียนรู้พื้นฐาน เลน และเป้าหมายเพื่อชัยชนะ
+        </p>
+    </header>
 
-        <a href="Viego-guide.html" class="champ-card">
-            <h3>Viego</h3>
-            <p>The Ruined King</p>
-        </a>
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- กฎพื้นฐาน -->
+        <section id="basics">
+            <h2>1. กฎพื้นฐานของเกม (The Basics)</h2>
+            <p>LoL เป็นเกมแนว MOBA เล่นแบบ <strong>5v5</strong> โดยเป้าหมายสูงสุดไม่ใช่การฆ่าศัตรูให้ได้มากที่สุด
+                แต่คือการบุกไปทำลาย <strong>Nexus (ฐานใหญ่)</strong> ของฝั่งตรงข้ามให้ได้</p>
+        </section>
+
+        <!-- ตำแหน่งและเลน -->
+        <section id="positions">
+            <h2>2. ตำแหน่งและเลนต่างๆ (Positions & Lanes)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Top Lane</h3>
+                    <p>เลนบน ส่วนใหญ่เป็นแชมเปี้ยนสายแทงค์ (Tank) หรือไฟต์เตอร์ (Fighter) ที่อึดและพึ่งพาตัวเองได้ดี</p>
+                </div>
+                <div class="card">
+                    <h3>Jungle</h3>
+                    <p>ป่า ไม่ฟาร์มในเลน แต่จะฆ่ามอนสเตอร์ในป่า และคอยวิ่งไปช่วยเพื่อนในเลนต่างๆ (Gank)</p>
+                </div>
+                <div class="card">
+                    <h3>Mid Lane</h3>
+                    <p>เลนกลาง มักเป็นนักเวท (Mage) หรือนักฆ่า (Assassin) ทำดาเมจได้รุนแรงและเดินเกมได้เร็ว</p>
+                </div>
+                <div class="card">
+                    <h3>Bot Lane (ADC)</h3>
+                    <p>เลนล่าง (ตัวทำดาเมจหลัก) เป็นสายยิงไกล ยิงแรงในช่วงท้ายเกม แต่ต้นเกมจะบางมาก</p>
+                </div>
+                <div class="card">
+                    <h3>Support</h3>
+                    <p>ผู้พิทักษ์เลนล่าง คอยปักหวอดเปิดแมพ ป้องกันและฮีลให้ ADC หรือช่วยเปิดจังหวะไฟต์</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- เป้าหมายสำคัญ -->
+        <section id="objectives">
+            <h2>3. เป้าหมายสำคัญในแผนที่ (Objectives)</h2>
+            <p>การฆ่ามอนสเตอร์พิเศษเหล่านี้จะช่วยให้ทีมของคุณได้เปรียบอย่างมหาศาล:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>เป้าหมาย (Objective)</th>
+                        <th>บัฟ / ประโยชน์ที่ได้รับ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Elemental Drakes (มังกรธาตุ)</strong></td>
+                        <td>ให้โบนัสสเตตัสถาวรแก่ทั้งทีม (เช่น พลังโจมตี, เลือดเด้ง, ความเร็วคูลดาวน์)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Baron Nashor (บารอน)</strong></td>
+                        <td>บัฟเพิ่มพลังให้มินเนี่ยนรอบตัว ช่วยให้ดันป้อมและจบเกมได้ง่ายขึ้นมาก</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Turrets (ป้อมปราการ)</strong></td>
+                        <td>ให้เงินรางวัลแก่ทีม และช่วยเปิดพื้นที่ในแผนที่ให้เล่นง่ายขึ้น</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- เคล็ดลับสำหรับมือใหม่ -->
+        <section id="tips">
+            <h2>4. 3 เคล็ดลับอัปฝีมือสำหรับมือใหม่</h2>
+            <div class="tips-box">
+                <p>ถ้าอยากเก่งขึ้นอย่างรวดเร็ว ให้โฟกัสที่ 3 สิ่งนี้:</p>
+                <ul>
+                    <li><strong>ฝึก Last Shot (CS):</strong> พยายามโจมตีมินเนี่ยนเป็นคนสุดท้ายเพื่อรับเงิน (Gold)
+                        เงินเยอะ = ไอเทมนำ = ชนะ</li>
+                    <li><strong>มอง มินิแมพ (Minimap):</strong> มองแผนที่มุมขวาล่างทุกๆ 5-10 วินาที
+                        เพื่อดูว่าศัตรูหายไปไหนหรือกำลังมาตุ๋ยเราไหม</li>
+                    <li><strong>อย่าตายฟรี:</strong> ใน LoL การไม่แจกแต้มฆ่าให้ศัตรู มีค่าเท่ากับการได้เปรียบ
+                        ถ้าสู้ไม่ได้ให้ถอยมาตั้งหลักใต้ป้อม</li>
+                </ul>
+            </div>
+        </section>
+
+        <h1>เลือกแชมเปี้ยนที่ต้องการดูคู่มือ</h1>
+
+        <div class="menu-container">
+            <a href="Sett-guide.html" class="champ-card">
+                <h3>Sett</h3>
+                <p>The Boss</p>
+            </a>
+
+            <a href="Viego-guide.html" class="champ-card">
+                <h3>Viego</h3>
+                <p>The Ruined King</p>
+            </a>
+        </div>
+
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 LoL Beginner Guide. จัดทำเพื่อแนะนำผู้เล่นใหม่ใน Summoner's Rift</p>
+    </footer>
+
 </body>
+
 </html>
