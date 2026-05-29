@@ -190,6 +190,32 @@
             display: block;
         }
 
+        .rune-position-header {
+            margin-bottom: 20px;
+        }
+
+        /* จัดการให้ตัว Badge แสดงผลแบบยืดหยุ่น (Flexbox) เพื่อให้ไอคอนกับข้อความอยู่กึ่งกลางกัน */
+        .lane-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            /* ระยะห่างระหว่างรูปไอคอนกับข้อความ */
+            padding: 4px 12px;
+            /* เพิ่มพื้นที่รอบๆ ให้ดูเป็น Badge สวยงาม */
+            border-radius: 4px;
+            /* ปรับความโค้งมนของ Badge */
+            /* ... สไตล์เดิมของคุณ เช่น background-color หรือ border ... */
+        }
+
+        /* ควบคุมขนาดรูปไอคอนตำแหน่ง */
+        .badge-icon {
+            width: 20px;
+            /* ปรับขนาดใหญ่-เล็กของไอคอนตามความเหมาะสม */
+            height: 20px;
+            object-fit: contain;
+            display: inline-block;
+        }
+
         /* ตารางไอเทมแนะนำ */
         table {
             width: 100%;
@@ -686,6 +712,13 @@
 
         <section id="runes">
             <h2>รูนแนะนำ (Recommended Runes)</h2>
+            <div class="rune-position-header">
+                <span class="lane-badge top-badge">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Jungle_icon.png/120px-Jungle_icon.png?9225d"
+                        alt="Jungle Icon" class="badge-icon">
+                    <strong>Jungle</strong>
+                </span>
+            </div>
             <div class="runes-container">
                 <div class="rune-tree main-tree">
                     <div class="tree-header">
@@ -788,7 +821,8 @@
                             <li style="display: flex; align-items: center; gap: 10px;">
                                 <img src="https://cdn.mobalytics.gg/assets/lol/images/perks/5001.svg?v9" alt="Armor"
                                     style="width: 24px; height: 24px; background-color: #060a0f; border-radius: 50%; padding: 2px; border: 1px solid #32281f;">
-                                <span><strong>พลังชีวิตที่เพิ่มขึ้น:</strong> พลังชีวิต +10-180 หน่วย (ขึ้นอยู่กับเลเวล)</span>
+                                <span><strong>พลังชีวิตที่เพิ่มขึ้น:</strong> พลังชีวิต +10-180 หน่วย
+                                    (ขึ้นอยู่กับเลเวล)</span>
                             </li>
 
                         </ul>
@@ -914,6 +948,26 @@
                                             </ul>
                                             <span class="effect-title">EFFECT (Bring It Down):</span>
                                             <p>การโจมตีปกติครั้งที่ 3 จะทำโบนัสความเสียหายจริง (True Damage)</p>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="item-img-wrap">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3047.png"
+                                        alt="Plated Steelcaps" class="item-img">
+                                    <span class="tooltip-box">
+                                        <div class="tooltip-header">
+                                            <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3047.png"
+                                                alt="Plated Steelcaps" class="tooltip-item-img">
+                                            <strong>Plated Steelcaps</strong>
+                                        </div>
+                                        <div class="tooltip-body">
+                                            <span class="stats-title">STATS:</span>
+                                            <ul>
+                                                <li>+45 ความเร็วการเคลื่อนที่</li>
+                                                <li>+20 เกราะ</li>
+                                            </ul>
+                                            <span class="effect-title">EFFECT:</span>
+                                            <p>ลดความเสียหายที่ได้รับจากการโจมตีปกติลง 12%</p>
                                         </div>
                                     </span>
                                 </div>

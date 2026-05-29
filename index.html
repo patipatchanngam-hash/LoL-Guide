@@ -157,11 +157,31 @@
             color: #f0e6d2;
             transition: 0.3s;
             width: 200px;
+            /* จัดตำแหน่งเนื้อหาภายในการ์ดให้อยู่ตรงกลาง */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .champ-card:hover {
             transform: translateY(-5px);
             border-color: #00bba3;
+        }
+
+        /* ส่วนตกแต่งรูปภาพแชมเปี้ยนที่เพิ่มเข้ามาใหม่ */
+        .champ-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            /* ปรับรูปให้เป็นวงกลม */
+            border: 2px solid #c8aa6e;
+            margin-bottom: 12px;
+            object-fit: cover;
+        }
+
+        .champ-card:hover .champ-img {
+            border-color: #00bba3;
+            /* เปลี่ยนสีขอบรูปตอนเอาเมาส์ชี้ */
         }
 
         /* ส่วนท้าย (Footer) */
@@ -269,12 +289,26 @@
         <h1>เลือกแชมเปี้ยนที่ต้องการดูคู่มือ</h1>
 
         <div class="menu-container">
+            <!-- เพิ่มรูปภาพของ Sett -->
             <a href="Sett-guide.html" class="champ-card">
+                <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/Sett.png" alt="Sett"
+                    class="champ-img">
                 <h3>Sett</h3>
                 <p>The Boss</p>
             </a>
 
+            <!-- เพิ่มรูปภาพของ Pantheon -->
+            <a href="Pantheon-guide.html" class="champ-card">
+                <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/Pantheon.png" alt="Pantheon"
+                    class="champ-img">
+                <h3>Pantheon</h3>
+                <p>The Unbreakable Spear</p>
+            </a>
+
+            <!-- เพิ่มรูปภาพของ Viego -->
             <a href="Viego-guide.html" class="champ-card">
+                <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/champion/Viego.png" alt="Viego"
+                    class="champ-img">
                 <h3>Viego</h3>
                 <p>The Ruined King</p>
             </a>

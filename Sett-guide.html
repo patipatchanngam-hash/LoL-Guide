@@ -191,6 +191,32 @@
             display: block;
         }
 
+        .rune-position-header {
+            margin-bottom: 20px;
+        }
+
+        /* จัดการให้ตัว Badge แสดงผลแบบยืดหยุ่น (Flexbox) เพื่อให้ไอคอนกับข้อความอยู่กึ่งกลางกัน */
+        .lane-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            /* ระยะห่างระหว่างรูปไอคอนกับข้อความ */
+            padding: 4px 12px;
+            /* เพิ่มพื้นที่รอบๆ ให้ดูเป็น Badge สวยงาม */
+            border-radius: 4px;
+            /* ปรับความโค้งมนของ Badge */
+            /* ... สไตล์เดิมของคุณ เช่น background-color หรือ border ... */
+        }
+
+        /* ควบคุมขนาดรูปไอคอนตำแหน่ง */
+        .badge-icon {
+            width: 20px;
+            /* ปรับขนาดใหญ่-เล็กของไอคอนตามความเหมาะสม */
+            height: 20px;
+            object-fit: contain;
+            display: inline-block;
+        }
+
         /* ตารางไอเทมแนะนำ */
         table {
             width: 100%;
@@ -696,6 +722,13 @@
 
         <section id="runes">
             <h2>รูนแนะนำ (Recommended Runes)</h2>
+            <div class="rune-position-header">
+                <span class="lane-badge top-badge">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Top_icon.png/120px-Top_icon.png?58442"
+                        alt="Top Lane Icon" class="badge-icon">
+                    <strong>Top Lane</strong>
+                </span>
+            </div>
             <div class="runes-container">
                 <div class="rune-tree main-tree">
                     <div class="tree-header">

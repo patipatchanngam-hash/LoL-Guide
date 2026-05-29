@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantheon Guide | คู่มือแชมเปี้ยน The Unbreakable Spear</title>
+    <style>
+        /* ล้างค่าเริ่มต้นและตั้งค่าฟอนต์ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #050811;
+            color: #f0e6d2;
+            line-height: 1.6;
+        }
+
+        /* ส่วนหัว (Header) - ใช้ภาพและธีมของ Pantheon */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(5, 8, 17, 1)), url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Pantheon_0.jpg') no-repeat center center/cover;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 3px solid #c8aa6e;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            color: #f0e6d2;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 0px 0px 15px rgba(200, 170, 110, 0.6);
+            letter-spacing: 2px;
+        }
+
+        header .subtitle {
+            font-size: 1.5rem;
+            color: #4a90e2;
+            margin-bottom: 15px;
+            font-style: italic;
+            font-weight: bold;
+            text-shadow: 0px 0px 10px rgba(74, 144, 226, 0.5);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        /* ส่วนเนื้อหาหลัก */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #c8aa6e;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        /* ปุ่มเลือกตำแหน่ง (Lane Tabs) */
+        .lane-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            background-color: #0b1121;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #1a2642;
+        }
+
+        .tab-btn {
+            background: none;
+            border: 1px solid #1a2642;
+            color: #a2b4db;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            border-color: #c8aa6e;
+            color: #f0e6d2;
+            background-color: rgba(200, 170, 110, 0.05);
+        }
+
+        .tab-btn.active {
+            background-color: #a3b3cc;
+            color: #050811;
+            border-color: #c8aa6e;
+            box-shadow: 0 0 12px rgba(200, 170, 110, 0.4);
+        }
+
+        /* ควบคุมการแสดงผลเนื้อหาแต่ละตำแหน่ง */
+        .position-content {
+            display: none;
+        }
+
+        .position-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* สรุปข้อมูลแชมเปี้ยน */
+        .intro-box {
+            background-color: #0b1121;
+            border: 1px solid #1a2642;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* รายละเอียดสกิล (Skills) */
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .skill-card {
+            background-color: #0b1121;
+            border: 1px solid #1a2642;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .skill-card {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        .skill-card:hover {
+            border-color: #c8aa6e;
+            background-color: #111a33;
+        }
+
+        .skill-header {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            align-self: flex-start;
+        }
+
+        .skill-icon-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .skill-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 4px;
+            border: 2px solid #1a2642;
+            display: block;
+        }
+
+        .skill-key {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background-color: #c8aa6e;
+            color: #050811;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            min-width: 24px;
+            text-align: center;
+            border: 1px solid #050811;
+        }
+
+        .skill-info {
+            flex: 1;
+        }
+
+        .skill-info h3 {
+            color: #c8aa6e;
+            margin-bottom: 8px;
+        }
+
+        /* ส่วนแสดงวิดีโอสกิล */
+        .skill-video-container {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #1a2642;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            transition: border-color 0.3s;
+        }
+
+        .skill-card:hover .skill-video-container {
+            border-color: #c8aa6e;
+        }
+
+        @media (min-width: 768px) {
+            .skill-video-container {
+                width: 320px;
+                max-width: 320px;
+                flex-shrink: 0;
+            }
+        }
+
+        .skill-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* การจัดระเบียบหน้าแยกรูน */
+        .rune-position-header {
+            margin-bottom: 20px;
+        }
+
+        /* จัดการให้ตัว Badge แสดงผลแบบยืดหยุ่น (Flexbox) เพื่อให้ไอคอนกับข้อความอยู่กึ่งกลางกัน */
+        .lane-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            /* ระยะห่างระหว่างรูปไอคอนกับข้อความ */
+            padding: 4px 12px;
+            /* เพิ่มพื้นที่รอบๆ ให้ดูเป็น Badge สวยงาม */
+            border-radius: 4px;
+            /* ปรับความโค้งมนของ Badge */
+            /* ... สไตล์เดิมของคุณ เช่น background-color หรือ border ... */
+        }
+
+        /* ควบคุมขนาดรูปไอคอนตำแหน่ง */
+        .badge-icon {
+            width: 20px;
+            /* ปรับขนาดใหญ่-เล็กของไอคอนตามความเหมาะสม */
+            height: 20px;
+            object-fit: contain;
+            display: inline-block;
+        }
+
+        .tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            /* เว้นระยะห่างระหว่างไอคอนกับตัวหนังสือ */
+            /* ... สไตล์เดิมของคุณ ... */
+        }
+
+        .lane-icon {
+            width: 24px;
+            /* ปรับขนาดใหญ่-เล็กตามชอบ */
+            height: 24px;
+            object-fit: contain;
+            /* ถ้าปุ่ม active หรือ hover แล้วอยากให้ไอคอนเปลี่ยนสี/เรืองแสง สามารถใส่ filter เพิ่มได้ */
+        }
+
+        .rune-flex-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .rune-flex-layout {
+                flex-direction: row;
+            }
+        }
+
+        .rune-tree {
+            flex: 1;
+            background-color: #0b1121;
+            border: 1px solid #1a2642;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .tree-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid #1a2642;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tree-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .tree-header h3 {
+            color: #c8aa6e;
+            font-size: 1.3rem;
+        }
+
+        .rune-row {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .rune-row:hover {
+            background-color: #152244;
+        }
+
+        .rune-icon {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background-color: #050811;
+            border: 1px solid #1a2642;
+        }
+
+        .rune-icon.big {
+            width: 55px;
+            height: 55px;
+            border: 2px solid #c8aa6e;
+        }
+
+        .rune-detail strong {
+            color: #c8aa6e;
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .rune-detail p {
+            font-size: 0.9rem;
+            color: #a2b4db;
+            line-height: 1.4;
+        }
+
+        .shards-box {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #1a2642;
+        }
+
+        .shards-box h4 {
+            color: #c8aa6e;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .shards-box ul {
+            list-style: none;
+            padding-left: 5px;
+            margin-top: 10px;
+        }
+
+        .shards-box li {
+            font-size: 0.9rem;
+            color: #a2b4db;
+            margin-bottom: 6px;
+        }
+
+        /* ตารางไอเทมแนะนำ */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #0b1121;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #1a2642;
+        }
+
+        th {
+            background-color: #111a33;
+            color: #c8aa6e;
+        }
+
+        tr:hover {
+            background-color: #152244;
+        }
+
+        .item-display-flex {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 5px 0;
+        }
+
+        .item-img-wrap {
+            position: relative;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .item-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            border: 1px solid #c8aa6e;
+            display: block;
+            box-shadow: 0 0 8px rgba(200, 170, 110, 0.2);
+            cursor: pointer;
+        }
+
+        /* โครงสร้าง Tooltip ไอเทม */
+        .item-img-wrap .tooltip-box {
+            position: absolute;
+            bottom: 135%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background-color: #111a33;
+            color: #f0e6d2;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #c8aa6e;
+            font-size: 0.85rem;
+            width: 290px;
+            text-align: left;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+        }
+
+        .item-img-wrap .tooltip-box::before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #c8aa6e transparent transparent transparent;
+        }
+
+        .item-img-wrap:hover .tooltip-box {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* ส่วนหัวภายใน Tooltip */
+        .tooltip-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #1a2642;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+        }
+
+        .tooltip-item-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            border: 1px solid #c8aa6e;
+        }
+
+        .tooltip-header strong {
+            color: #c8aa6e;
+            font-size: 1rem;
+        }
+
+        .tooltip-body ul {
+            list-style: none;
+            margin: 4px 0 10px 0;
+            color: #a2b4db;
+        }
+
+        .stats-title,
+        .effect-title {
+            color: #c8aa6e;
+            font-weight: bold;
+            display: block;
+        }
+
+        .tooltip-body p {
+            margin-top: 4px;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: #f0e6d2;
+        }
+
+        /* กล่องเทคนิคการเล่น */
+        .tips-box {
+            background-color: rgba(200, 170, 110, 0.05);
+            border-left: 5px solid #c8aa6e;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tips-box ul {
+            list-style-position: inside;
+            margin-top: 10px;
+        }
+
+        .tips-box li {
+            margin-bottom: 8px;
+        }
+
+        /* ส่วนท้าย (Footer) */
+        footer {
+            background-color: #020408;
+            text-align: center;
+            padding: 20px;
+            color: #61739c;
+            font-size: 0.9rem;
+            border-top: 1px solid #1a2642;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #c8aa6e;
+            background-color: rgba(11, 17, 33, 0.85);
+            padding: 8px 16px;
+            border: 1px solid #1a2642;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 100;
+            backdrop-filter: blur(4px);
+        }
+
+        .back-to-home svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #f0e6d2;
+            border-color: #c8aa6e;
+            background-color: rgba(21, 34, 68, 0.5);
+            box-shadow: 0 0 12px rgba(200, 170, 110, 0.5);
+        }
+
+        .back-to-home:hover svg {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 480px) {
+            .back-to-home {
+                top: 15px;
+                left: 15px;
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .back-to-home span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="back-to-home" title="กลับสู่หน้าหลัก">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>หน้าหลัก</span>
+    </a>
+
+    <header>
+        <h1>Pantheon</h1>
+        <div class="subtitle">The Unbreakable Spear</div>
+        <p>แชมเปี้ยนสาย Fighter/Assassin ผู้มีพลังแห่งเทพสงครามและหอกที่ไม่เคยหักพัง
+            สามารถปรับแต่งสไตล์การเล่นและไอเทมให้เข้ากับแต่ละตำแหน่งได้อย่างหลากหลาย
+        </p>
+    </header>
+
+    <div class="container">
+
+        <section id="overview">
+            <h2>ข้อมูลเบื้องต้น (Overview)</h2>
+            <div class="intro-box">
+                <div id="overview-top" class="position-content active">
+                    <p><strong>สไตล์การเล่นเลนบน:</strong> เน้นการเป็นไฟต์เตอร์กึ่งแทงค์ ดวลเลนแบบตอดเลือดด้วย Q สั้น
+                        และกางโล่ E เพื่อบล็อกสกิลสำคัญของฝั่งตรงข้าม
+                        มุ่งเน้นการลดเกราะและยืนระยะในทีมไฟต์เพื่อโซนแนวหลัง</p>
+                </div>
+                <div id="overview-mid" class="position-content">
+                    <p><strong>สไตล์การเล่นเลนกลาง:</strong> เน้นการเป็นแอสซาซินระเบิดพลังเบิรสต์ (Burst Damage)
+                        ทำคอมโบออลอินทีเดียวให้ศัตรูตายทันที และเน้นดันเลนไวเพื่อใช้ท่าไม้ตาย R
+                        โดดโรมนิ่งไปช่วยไฟต์ที่เลนบนหรือเลนล่างอย่างรวดเร็ว</p>
+                </div>
+                <div id="overview-support" class="position-content">
+                    <p><strong>สไตล์การเล่นตำแหน่งป่า:</strong> เน้นการแก๊ง (Gank) ที่มีประสิทธิภาพสูงมากด้วยคอมโบ Flash
+                        + W ล็อกเป้าหมายที่แน่นอน และใช้ท่าไม้ตาย R
+                        เดินทางข้ามป่าไปทำจังหวะสวนกลับหรือดักฆ่าศัตรูที่ดันเลนสูง</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>สกิลความสามารถ (Abilities)</h2>
+            <div class="skill-list">
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/passive/Pantheon_Passive.png"
+                                alt="Mortal Will" class="skill-icon">
+                            <div class="skill-key">P</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Mortal Will</h3>
+                        <p>หลังโจมตีหรือใช้สกิลครบ 5 ครั้ง
+                            สกิลถัดไปจะได้รับการเสริมพลังให้รุนแรงและมีเอฟเฟกต์พิเศษเพิ่มเติม</p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline>
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0080/ability_0080_P1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/spell/PantheonQ.png"
+                                alt="Comet Spear" class="skill-icon">
+                            <div class="skill-key">Q</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Comet Spear</h3>
+                        <p><strong>กดสั้น:</strong> แทงหอกไปข้างหน้า / <strong>กดค้าง:</strong> ปาหอกออกไป
+                            (แรงขึ้นเมื่อศัตรูเลือดต่ำกว่า 50%)<br><strong>โบนัสพาสซีฟ:</strong>
+                            สร้างความเสียหายกายภาพเพิ่มเติมและสโลว์เป้าหมาย</p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline>
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0080/ability_0080_Q1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/spell/PantheonW.png"
+                                alt="Shield Vault" class="skill-icon">
+                            <div class="skill-key">W</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Shield Vault</h3>
+                        <p>พุ่งเข้าหาศัตรู ล็อกเป้าหมายแล้ว **สตัน (Stun)** 1 วินาที<br><strong>โบนัสพาสซีฟ:</strong>
+                            การโจมตีถัดไปจะกระหน่ำตีไวขึ้น 3 ครั้งซ้อน (ใช้เก็บแต้มพาสซีฟกลับมาทันที)</p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline>
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0080/ability_0080_W1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/spell/PantheonE.png"
+                                alt="Aegis Assault" class="skill-icon">
+                            <div class="skill-key">E</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Aegis Assault</h3>
+                        <p>ชูโล่ขึ้นมา **บล็อกความเสียหายทั้งหมด**
+                            จากทิศทางนั้นอย่างสมบูรณ์แบบพร้อมแทงหอกรัวไปข้างหน้า<br><strong>โบนัสพาสซีฟ:</strong>
+                            เมื่อสกิลจบลง จะได้รับความเร็วในการเคลื่อนที่เพิ่มขึ้น</p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline>
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0080/ability_0080_E1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <div class="skill-icon-wrap">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/spell/PantheonR.png"
+                                alt="Grand Starfall" class="skill-icon">
+                            <div class="skill-key">R</div>
+                        </div>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Grand Starfall (ท่าไม้ตาย)</h3>
+                        <p>กระโดดพุ่งขึ้นฟ้าแล้วพุ่งทะยานลงมายังพื้นที่เป้าหมายราวกับดาวตก
+                            สร้างดาเมจเป็นวงกว้างและสโลว์ศัตรู<br>*เมื่อตกถึงพื้น จะรีเซ็ตแต้มพาสซีฟ Mortal Will ให้เต็ม
+                            5 แต้มด่วนทันที*</p>
+                    </div>
+                    <div class="skill-video-container">
+                        <video autoplay loop muted playsinline>
+                            <source
+                                src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0080/ability_0080_R1.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="lane-tabs">
+            <button class="tab-btn active" onclick="switchPosition('top')">
+                <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Top_icon.png/120px-Top_icon.png?58442"
+                    alt="Top Lane" class="lane-icon">
+                Top Lane (เลนบน)
+            </button>
+            <button class="tab-btn" onclick="switchPosition('mid')">
+                <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Middle_icon.png/120px-Middle_icon.png?fa3f0"
+                    alt="Mid Lane" class="lane-icon">
+                Mid Lane (เลนกลาง)
+            </button>
+            <button class="tab-btn" onclick="switchPosition('support')">
+                <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Support_icon.png/120px-Support_icon.png?af1ff"
+                    alt="Support" class="lane-icon">
+                Support (ซัพพอร์ต)
+            </button>
+        </div>
+
+        <section id="runes">
+            <h2>รูนแนะนำตามตำแหน่ง (Recommended Runes)</h2>
+
+            <div id="runes-top" class="runes-container position-content active">
+                <div class="rune-position-header">
+                    <span class="lane-badge top-badge">
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Top_icon.png/120px-Top_icon.png?58442"
+                            alt="Top Lane Icon" class="badge-icon">
+                        <strong>Top Lane</strong>
+                    </span>
+                </div>
+                <div class="rune-flex-layout">
+                    <div class="rune-tree main-tree">
+                        <div class="tree-header">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png"
+                                alt="Precision" class="tree-icon">
+                            <h3>รูนหลัก: Precision</h3>
+                        </div>
+                        <div class="rune-row keystone">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Conqueror/Conqueror.png"
+                                alt="Conqueror" class="rune-icon big">
+                            <div class="rune-detail">
+                                <strong>Conqueror (Keystone)</strong>
+                                <p>เมื่อโจมตีแชมเปี้ยนจะสะสมแต้ม เพิ่มพลังโจมตี (AD) และเมื่อสะสมครบ
+                                    จะฟื้นฟูเลือดจากความเสียหายที่ทำได้ เหมาะกับการดวลกับตัวหนาในเลนบน</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Triumph</strong>
+                                <p>ฟื้นฟูพลังชีวิต 10% ของหลอดที่หายไปเมื่อโค่นล้มแชมเปี้ยนศัตรูสำเร็จ
+                                    ช่วยให้รอดตายในจังหวะหวาดเสียว</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Legend: Alacrity</strong>
+                                <p>ได้รับความเร็วโจมตีเพิ่มขึ้นถาวรจากการฆ่ามินเนี่ยนหรือแชมเปี้ยน
+                                    ช่วยให้เก็บพาสซีฟได้ลื่นไหลขึ้น</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Last Stand</strong>
+                                <p>สร้างความเสียหายเพิ่มขึ้นเมื่อพลังชีวิตของเราเหลือต่ำกว่า 60%
+                                    พลิกจังหวะดวลเอาชนะเลนบนได้ดีมาก</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rune-tree sub-tree">
+                        <div class="tree-header">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png"
+                                alt="Resolve" class="tree-icon">
+                            <h3>รูนรอง: Resolve</h3>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Bone Plating</strong>
+                                <p>หลังจากโดนโจมตี การโจมตี 3 ครั้งถัดไปของศัตรูจะเบาลงอย่างมาก
+                                    เหมาะกับการรับมือตัวเปิดคอมโบ</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Overgrowth</strong>
+                                <p>ดูดซับพลังชีวิตจากมินเนี่ยนที่ตายรอบตัว เพื่อเพิ่มพลังชีวิตสูงสุดของตัวเองขึ้นแบบถาวร
+                                </p>
+                            </div>
+                        </div>
+                        <div class="shards-box">
+                            <h4>Rune Shards (รูนสเตตัสเสริม)</h4>
+                            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                        alt="Adaptive Force"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>Adaptive Force:</strong> Adaptive Force +9 หน่วย</span>
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                        alt="Adaptive Force"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>Adaptive Force:</strong> Adaptive Force +9 หน่วย</span>
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://cdn.mobalytics.gg/assets/lol/images/perks/5001.svg?v9" alt="Armor"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>พลังชีวิตที่เพิ่มขึ้น:</strong> พลังชีวิต +10-180 หน่วย
+                                        (ขึ้นอยู่กับเลเวล)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="runes-mid" class="runes-container position-content">
+                <div class="rune-position-header">
+                    <span class="lane-badge top-badge">
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Middle_icon.png/120px-Middle_icon.png?fa3f0"
+                            alt="Top Lane Icon" class="badge-icon">
+                        <strong>Mid Lane</strong>
+                    </span>
+                </div>
+                <div class="rune-flex-layout">
+                    <div class="rune-tree main-tree">
+                        <div class="tree-header">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png"
+                                alt="Precision" class="tree-icon">
+                            <h3>รูนหลัก: Precision</h3>
+                        </div>
+                        <div class="rune-row keystone">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png"
+                                alt="Press the Attack" class="rune-icon big">
+                            <div class="rune-detail">
+                                <strong>Press the Attack (Keystone)</strong>
+                                <p>โจมตีปกติ 3 ครั้งซ้อนจะทำให้ศัตรูเปราะบางลงและโดนดาเมจแรงขึ้น คอมโบกับสกิล W
+                                    เสริมพลังที่พุ่งไปกระหน่ำตี 3 ครั้งในพริบตาได้โหดที่สุด</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Triumph</strong>
+                                <p>คืนเลือดและเงินเพื่อช่วยเซฟชีวิตหลังจากที่เราพุ่งเข้าไปล้วงฆ่าเมจหรือตัวบางในเลนกลางสำเร็จ
+                                </p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Coup de Grace</strong>
+                                <p>สร้างดาเมจแรงขึ้น 8% ใส่ศัตรูที่เลือดต่ำกว่า 40% คอมโบพาสซีฟสกิล Q
+                                    ที่จะคริติคอลเมื่อศัตรูเลือดต่ำกว่า 50%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rune-tree sub-tree">
+                        <div class="tree-header">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7200_Domination.png"
+                                alt="Domination" class="tree-icon">
+                            <h3>รูนรอง: Domination</h3>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Sudden Impact</strong>
+                                <p>หลังจากใช้สกิลพุ่ง วาร์ป (สกิล W)
+                                    จะได้รับพลังเจาะเกราะกะทันหันเพิ่มขึ้นทันทีเมื่อทำดาเมจสวนกลับ</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Treasure Hunter</strong>
+                                <p>ได้รับเงินโบนัสมากขึ้นเมื่อจบคิลแชมเปี้ยนศัตรูไม่ซ้ำหน้ากัน
+                                    เร่งเงินซื้อไอเทมเจาะเกราะมาสโนว์บอลเกม</p>
+                            </div>
+                        </div>
+                        <div class="shards-box">
+                            <h4>Rune Shards (รูนสเตตัสเสริม)</h4>
+                            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                        alt="Adaptive Force"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>Adaptive Force:</strong> Adaptive Force +9 หน่วย</span>
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                        alt="Adaptive Force"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>Adaptive Force:</strong> Adaptive Force +9 หน่วย</span>
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://cdn.mobalytics.gg/assets/lol/images/perks/5001.svg?v9" alt="Armor"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>พลังชีวิตที่เพิ่มขึ้น:</strong> พลังชีวิต +10-180 หน่วย
+                                        (ขึ้นอยู่กับเลเวล)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="runes-support" class="runes-container position-content">
+                <div class="rune-position-header">
+                    <span class="lane-badge top-badge">
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Support_icon.png/120px-Support_icon.png?af1ff"
+                            alt="Top Lane Icon" class="badge-icon">
+                        <strong>Support</strong>
+                    </span>
+                </div>
+                <div class="rune-flex-layout">
+                    <div class="rune-tree main-tree">
+                        <div class="tree-header">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png"
+                                alt="Precision" class="tree-icon">
+                            <h3>รูนหลัก: Precision</h3>
+                        </div>
+                        <div class="rune-row keystone">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png"
+                                alt="Press the Attack" class="rune-icon big">
+                            <div class="rune-detail">
+                                <strong>Press the Attack (Keystone)</strong>
+                                <p>คอมโบ W เปิดแก๊งเลนแล้วติดสถานะเปราะบางทันที
+                                    จะช่วยให้เพื่อนร่วมเลนที่เราไปช่วยทำดาเมจซ้ำใส่ศัตรูตัวนั้นได้แรงและเร็วขึ้นมาก</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Triumph</strong>
+                                <p>ช่วยฟื้นฟูเลือดเมื่อไฟต์ตบป่าฝั่งตรงข้าม หรือเมื่อไดฟ์ป้อมแก๊งแล้วเดินออก</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Legend: Alacrity</strong>
+                                <p>ช่วยเพิ่มความเร็วโจมตี ทำให้ Pantheon
+                                    ฟาร์มแคมป์ป่าเคลียร์มอนสเตอร์ได้ไวขึ้นในช่วงต้นเกม</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rune-tree sub-tree">
+                        <div class="tree-header">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7202_Sorcery.png"
+                                alt="Sorcery" class="tree-icon">
+                            <h3>รูนรอง: Sorcery</h3>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Celerity</strong>
+                                <p>เพิ่มผลโบนัสความเร็วเคลื่อนที่ทั้งหมดขึ้นอีก 7%
+                                    ช่วยให้เดินเกมเดินไปกดปุ่มล็อกสตันแก๊งได้ง่ายและเร็วมาก</p>
+                            </div>
+                        </div>
+                        <div class="rune-row">
+                            <div class="rune-detail"><strong>Waterwalking</strong>
+                                <p>วิ่งเร็วขึ้นและได้พลัง AD เพิ่มเมื่ออยู่ในแม่น้ำ ยอดเยี่ยมสำหรับการสลับฝั่งป่า
+                                    เติมไฟต์แม่น้ำ และชิงมังกร</p>
+                            </div>
+                        </div>
+                        <div class="shards-box">
+                            <h4>Rune Shards (รูนสเตตัสเสริม)</h4>
+                            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                        alt="Adaptive Force"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>Adaptive Force:</strong> Adaptive Force +9 หน่วย</span>
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                        alt="Adaptive Force"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>Adaptive Force:</strong> Adaptive Force +9 หน่วย</span>
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://cdn.mobalytics.gg/assets/lol/images/perks/5001.svg?v9" alt="Armor"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>พลังชีวิตที่เพิ่มขึ้น:</strong> พลังชีวิต +10-180 หน่วย
+                                        (ขึ้นอยู่กับเลเวล)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="items">
+            <h2>ไอเทมแนะนำ (Recommended Items)</h2>
+
+            <div id="items-top" class="position-content active">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">ประเภทไอเทม</th>
+                            <th>ไอเทมแนะนำ (สาย Fighter ดวลยาว)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ไอเทม Core หลัก</strong></td>
+                            <td>
+                                <div class="item-display-flex">
+                                    <div class="item-img-wrap">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/item/6631.png"
+                                            alt="Eclipse" class="item-img">
+                                        <span class="tooltip-box">
+                                            <div class="tooltip-header"><strong>Eclipse</strong></div>
+                                            <p>ทำดาเมจเป็นเปอร์เซ็นต์เลือดพร้อมมอบโล่สั้น คูลดาวน์ไว
+                                                เหมาะกับการเทรดเลนบนระยะยาว</p>
+                                        </span>
+                                    </div>
+                                    <div class="item-img-wrap">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/item/3071.png"
+                                            alt="Black Cleaver" class="item-img">
+                                        <span class="tooltip-box">
+                                            <div class="tooltip-header"><strong>Black Cleaver</strong></div>
+                                            <p>ลดเกราะศัตรูสูงสุด 24%
+                                                และให้พลังชีวิตเพิ่มความอึดในการสู้กับแชมเปี้ยนแทงค์</p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Full Build แนะนำ</strong></td>
+                            <td>
+                                <div class="item-display-flex">Eclipse, Black Cleaver, Sterak's Gage, Death's Dance,
+                                    Plated Steelcaps</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="items-mid" class="position-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">ประเภทไอเทม</th>
+                            <th>ไอเทมแนะนำ (สาย Assassin ระเบิดพลัง)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ไอเทม Core หลัก</strong></td>
+                            <td>
+                                <div class="item-display-flex">
+                                    <div class="item-img-wrap">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/item/6632.png"
+                                            alt="Profane Hydra" class="item-img">
+                                        <span class="tooltip-box">
+                                            <div class="tooltip-header"><strong>Profane Hydra</strong></div>
+                                            <p>ช่วยเคลียร์มินเนี่ยนเลนกลางได้ไวมากเพื่อหาจังหวะเดินโรมมิ่ง
+                                                และเพิ่มดาเมจคอมโบเบิรสต์</p>
+                                        </span>
+                                    </div>
+                                    <div class="item-img-wrap">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/item/3134.png"
+                                            alt="Youmuu's Ghostblade" class="item-img">
+                                        <span class="tooltip-box">
+                                            <div class="tooltip-header"><strong>Youmuu's Ghostblade</strong></div>
+                                            <p>เพิ่มเจาะเกราะแบบ Lethality สูง
+                                                และกดใช้เพื่อวิ่งไวขึ้นในการใช้ท่าไม้ตายเปิดแก๊งข้ามเลน</p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Full Build แนะนำ</strong></td>
+                            <td>
+                                <div class="item-display-flex">Profane Hydra, Youmuu's Ghostblade, Edge of Night,
+                                    Serylda's Grudge, Mercury's Treads</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="items-support" class="position-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">ประเภทไอเทม</th>
+                            <th>ไอเทมแนะนำ (สายป่าเดินเกมแก๊ง)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ไอเทมป่าเริ่มต้น</strong></td>
+                            <td>
+                                <div class="item-display-flex">Scorchclaw Pup (สัตว์เลี้ยงป่าสีแดง
+                                    เพิ่มสโลว์และการเผาไหม้)</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>ไอเทม Core หลัก</strong></td>
+                            <td>
+                                <div class="item-display-flex">
+                                    <div class="item-img-wrap">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/item/6631.png"
+                                            alt="Eclipse" class="item-img">
+                                    </div>
+                                    <div class="item-img-wrap">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/14.1.1/img/item/3156.png"
+                                            alt="Opportunity" class="item-img">
+                                        <span class="tooltip-box">
+                                            <div class="tooltip-header"><strong>Opportunity</strong></div>
+                                            <p>มอบพลังเจาะเกราะสูงในการโจมตีครั้งแรกและวิ่งเร็วขึ้นหลังฆ่าศัตรูได้
+                                                เหมาะกับการแก๊งล็อกคิล</p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="tips">
+            <h2>เคล็ดลับการเล่นเพื่อไต่แรงค์</h2>
+            <div class="tips-box">
+                <div id="tips-top" class="position-content active">
+                    <p><strong>เทคนิคเลนบน:</strong> โฟกัสไปที่การรักษาระยะและใช้ Q
+                        แทงสั้นตอดเลือดศัตรูตอนกำลังจะลาสครีป อย่าเปิดออลอินพร่ำเพรื่อถ้าแต้มพาสซีฟไม่เต็ม ใช้สกิล E
+                        เพื่อบล็อกท่าไม้ตายหรือสกิลดาเมจหนักๆ ของท็อปเลนฝั่งตรงข้าม จากนั้นค่อยสวนกลับ</p>
+                </div>
+                <div id="tips-mid" class="position-content">
+                    <p><strong>เทคนิคเลนกลาง:</strong> เมื่อเลเวล 6 ให้พยายามเคลียร์ครีปให้ไวที่สุด
+                        จากนั้นเดินหลบเข้าหมอกดำเพื่อให้เลนอื่นระแวง ทันทีที่มีไฟต์ที่เลนล่างหรือป่า ให้กดท่าไม้ตาย R
+                        ดิ่งพสุธาลงไปซ้อนทันที การตัดสินใจโรมมิ่งที่ไวจะช่วยให้เกมชนะง่ายขึ้น</p>
+                </div>
+                <div id="tips-support" class="position-content">
+                    <p><strong>เทคนิคตำแหน่งซัพพอร์ต:</strong> อย่าโลภใช้ E เพื่อทำดาเมจ: สกิล E (Aegis Assault)
+                        เป็นสกิลอมตะด้านหน้าเพียงสกิลเดียวของคุณ ในจังหวะ All-in ให้เก็บไว้ใช้หลังจากคุณกด W เปิดไปแล้ว
+                        เพื่อบล็อกสกิลสวนกลับ (เช่น CC หรือดาเมจหนักๆ ของ ADC ศัตรู) แล้วค่อยๆ เดินถอยออกมา
+                        ไม่จำเป็นต้องกดปล่อยดาเมจจังหวะสุดท้ายของ E เสมอไปหากมันทำให้คุณเสียตำแหน่ง</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Pantheon Multi-Position Guide. League of Legends Fanmade Guide</p>
+    </footer>
+
+    <script>
+        // ฟังก์ชันสำหรับสลับหน้าจอตามตำแหน่งเลน
+        function switchPosition(pos) {
+            // 1. จัดการคลาสของปุ่มแท็บ
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // ค้นหาปุ่มที่กดแล้วเติมคลาส active
+            event.currentTarget.classList.add('active');
+
+            // 2. ซ่อนเนื้อหาตำแหน่งทั้งหมดก่อน
+            const allContent = document.querySelectorAll('.position-content');
+            allContent.forEach(content => content.classList.remove('active'));
+
+            // 3. เปิดแสดงเฉพาะเนื้อหาของตำแหน่งที่เลือก
+            document.getElementById(`overview-${pos}`).classList.add('active');
+            document.getElementById(`runes-${pos}`).classList.add('active');
+            document.getElementById(`items-${pos}`).classList.add('active');
+            document.getElementById(`tips-${pos}`).classList.add('active');
+        }
+
+        // ระบบควบคุมวิดีโอเล่นอัตโนมัติเมื่อ Hover (เหมือนของเดิม)
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach(card => {
+            const video = card.querySelector('video');
+            if (video) {
+                video.loop = true;
+                video.muted = true;
+                video.play().catch(err => console.log("Autoplay active", err));
+
+                card.addEventListener('mouseenter', () => {
+                    video.currentTime = 0;
+                    video.play().catch(err => console.log(err));
+                });
+
+                video.addEventListener('ended', () => {
+                    video.currentTime = 0;
+                    video.play().catch(error => console.log(error));
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
