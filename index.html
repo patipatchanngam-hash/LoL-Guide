@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoL Guide for Beginners | ศูนย์ฝึก Summoner มือใหม่</title>
+    <style>
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* สีหลักของธีม */
+        :root {
+            --bg-dark: #010a13;
+            --bg-card: #091420;
+            --text-main: #f0e6d2;
+            --text-highlight: #c8aa6e;
+            --accent-blue: #00bba3;
+            --border-color: #32281f;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        strong {
+            color: var(--text-highlight);
+            font-weight: 600;
+        }
+
+        /* --- Header: Hero Section --- */
+        header {
+            position: relative;
+            background: linear-gradient(180deg, rgba(1, 10, 19, 0.4) 0%, rgba(1, 10, 19, 1) 100%),
+                url('https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S1_2560x1440-47eb328eac5ddd63ebd096ded7d0d5ab') no-repeat 100% 0%/cover;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid var(--text-highlight);
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            color: var(--text-highlight);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(200, 170, 110, 0.7);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            color: #cdbe91;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            color: var(--text-highlight);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        /* --- Main Content Area --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        /* Info Section */
+        h2 {
+            color: var(--text-highlight);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        h2::before,
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--text-highlight), transparent);
+        }
+
+        /* --- 1. Basics Section --- */
+        #basics p {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        /* --- 2. Positions: Grid & Cards --- */
+        .position-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .pos-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .pos-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .pos-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 25px rgba(0, 187, 163, 0.3);
+        }
+
+        .pos-card:hover::before {
+            opacity: 1;
+        }
+
+        .pos-card h3 {
+            color: var(--accent-blue);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pos-card p {
+            color: #a0a0a0;
+            font-size: 1rem;
+        }
+
+        .role-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(75%) sepia(21%) saturate(733%) hue-rotate(357deg) brightness(91%) contrast(87%);
+            transition: all 0.3s ease;
+        }
+
+        /* --- 3. Objectives: Table --- */
+        .table-container {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        .objective-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+            min-width: 600px;
+        }
+
+        .objective-table th {
+            background-color: transparent;
+            color: var(--text-highlight);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .objective-table td {
+            padding: 18px 20px;
+            background-color: rgba(255, 255, 255, 0.01);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .objective-table tr td:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .objective-table tr td:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .objective-table tr:hover td {
+            background-color: rgba(0, 187, 163, 0.05);
+            color: #fff;
+            border-top-color: rgba(0, 187, 163, 0.2);
+            border-bottom-color: rgba(0, 187, 163, 0.2);
+        }
+
+        .obj-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            color: var(--text-highlight);
+        }
+
+        .obj-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
+
+
+        /* Dragon Section */
+        .dragon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .dragon-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #0d1b2a 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 22px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .dragon-card:last-child {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #120c1f 0%, #091420 100%);
+            border-color: #7a3fe3;
+        }
+
+        .dragon-card:last-child:hover {
+            border-color: #a370f7;
+            box-shadow: 0 5px 25px rgba(163, 112, 247, 0.25);
+        }
+
+        .dragon-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-highlight);
+            box-shadow: 0 5px 20px rgba(200, 170, 110, 0.25);
+        }
+
+        .dragon-avatar {
+            width: 68px;
+            height: 68px;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            object-fit: cover;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .dragon-card:hover .dragon-avatar {
+            transform: scale(1.08);
+            border-color: var(--text-highlight);
+        }
+
+        .dragon-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .dragon-info h3 {
+            color: #fff;
+            font-size: 1.35rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .soul-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-highlight);
+            background: rgba(200, 170, 110, 0.08);
+            border: 1px solid rgba(200, 170, 110, 0.2);
+            padding: 4px 10px;
+            border-radius: 4px;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dragon-card:last-child .soul-badge {
+            color: #a370f7;
+            background: rgba(163, 112, 247, 0.08);
+            border-color: rgba(163, 112, 247, 0.3);
+        }
+
+        .soul-icon {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        .dragon-desc {
+            color: #b3b3b3;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 4px;
+        }
+
+        /* --- 4. Tips Box --- */
+        .tips-container {
+            background: linear-gradient(145deg, rgba(200, 170, 110, 0.1) 0%, rgba(9, 20, 32, 1) 100%);
+            border-left: 5px solid var(--text-highlight);
+            padding: 40px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .tips-container p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .tips-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--text-highlight);
+            font-size: 1.2rem;
+        }
+
+        /* --- Champion Guides Section --- */
+        .champ-section {
+            text-align: center;
+        }
+
+        .champ-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .champ-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .champ-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--text-highlight);
+            box-shadow: 0 15px 35px rgba(200, 170, 110, 0.3);
+        }
+
+        .champ-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .champ-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .champ-card:hover .champ-img {
+            transform: scale(1.1);
+        }
+
+        .champ-info {
+            padding: 20px;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(9, 20, 32, 0.8) 0%, rgba(1, 10, 19, 1) 100%);
+            text-align: center;
+        }
+
+        .champ-card h3 {
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .champ-card:hover h3 {
+            color: var(--text-highlight);
+        }
+
+        .champ-card p {
+            font-style: italic;
+            color: #cdbe91;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .lane-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(0, 187, 163, 0.1);
+            border: 1px solid rgba(0, 187, 163, 0.3);
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 30px;
+            color: #7e7e7e;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        /* --- Animations & Responsive --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .tips-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Hero Section -->
+    <header>
+        <h1>League of Legends Guide</h1>
+        <p>ยินดีต้อนรับสู่ Summoner's Rift ศูนย์รวมข้อมูลพื้นฐาน เส้นทางสู่ชัยชนะ และคู่มือแชมเปี้ยนสำหรับผู้เล่นใหม่
+        </p>
+        <a href="#basics" class="scroll-down">🡳</a>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- 1. กฎพื้นฐาน -->
+        <section id="basics">
+            <h2>1. เป้าหมายสูงสุด</h2>
+            <p>
+                ในสมรภูมิ <strong>5v5</strong> นี้ ชัยชนะไม่ได้ตัดสินที่จำนวนการฆ่า (Kills)
+                แต่คือทีมใดที่สามารถบุกทะลวงการป้องกันและทำลาย <strong>Nexus (ฐานใหญ่)</strong>
+                ของศัตรูได้ก่อนคือผู้ชนะ!
+            </p>
+        </section>
+
+        <!-- 2. ตำแหน่งและเลน -->
+        <section id="positions">
+            <h2>2. บทบาทและตำแหน่ง</h2>
+            <div class="position-grid">
+                <div class="pos-card">
+                    <h3>
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Top_icon.png/120px-Top_icon.png?58442"
+                            alt="Top Lane" class="role-icon">
+                        Top Lane
+                    </h3>
+                    <p>เลนบนอันโดดเดี่ยว ส่วนใหญ่เป็นสายอึด (Tank) หรือนักสู้ (Fighter) ที่ต้องยืนเลนด้วยตัวเองได้ดี</p>
+                </div>
+                <div class="pos-card">
+                    <h3>
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Jungle_icon.png/120px-Jungle_icon.png?9225d"
+                            alt="Jungle" class="role-icon">
+                        Jungle
+                    </h3>
+                    <p>ผู้ล่าในป่า ฟาร์มมอนสเตอร์พิเศษ และคอยวิ่งไปช่วยเพื่อน (Gank) เพื่อสร้างความได้เปรียบให้เลนต่างๆ
+                    </p>
+                </div>
+                <div class="pos-card">
+                    <h3>
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Middle_icon.png/120px-Middle_icon.png?fa3f0"
+                            alt="Mid Lane" class="role-icon">
+                        Mid Lane
+                    </h3>
+                    <p>เลนกลางสุดเดือด มักเป็นจอมเวท (Mage) หรือนักฆ่า (Assassin) ที่ทำดาเมจได้สูงและคุมจังหวะเกม</p>
+                </div>
+                <div class="pos-card">
+                    <h3>
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Bottom_icon.png/120px-Bottom_icon.png?6d4b2"
+                            alt="Bot Lane" class="role-icon">
+                        Bot Lane (ADC)
+                    </h3>
+                    <p>ตัวทำดาเมจหลักระยะไกล โจมตีปกติรุนแรงมากในช่วงท้ายเกม แต่ต้นเกมจะบางและต้องการการดูแล</p>
+                </div>
+                <div class="pos-card">
+                    <h3>
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Support_icon.png/120px-Support_icon.png?af1ff"
+                            alt="Support" class="role-icon">
+                        Support
+                    </h3>
+                    <p>ผู้พิทักษ์ คอยปักหวอดเปิดแมพ ป้องกัน ฮีล หรือเปิดจังหวะไฟต์ให้ทีม โดยเฉพาะการดูแล ADC</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. เป้าหมายสำคัญ -->
+        <section id="objectives">
+            <h2>3. เป้าหมายหลักบนแผนที่</h2>
+            <div class="table-container">
+                <table class="objective-table">
+                    <thead>
+                        <tr>
+                            <th>เป้าหมาย (Objective)</th>
+                            <th>บัฟ / ประโยชน์ที่ได้รับ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="obj-wrapper">
+                                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Cloud_DrakeSquare.png/48px-Cloud_DrakeSquare.png"
+                                        alt="Elemental Drakes" class="obj-icon">
+                                    <span>Elemental Drakes</span>
+                                </div>
+                            </td>
+                            <td>มังกรธาตุ ให้โบนัสสเตตัสถาวรแก่ทั้งทีม (เช่น พลังโจมตี, ความเร็วคูลดาวน์)</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="obj-wrapper">
+                                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/VoidgrubSquare.png/48px-VoidgrubSquare.png"
+                                        alt="Voidgrubs" class="obj-icon">
+                                    <span>Voidgrubs</span>
+                                </div>
+                            </td>
+                            <td>หนอน Void เกิดช่วงต้นเกม ให้บัฟเพิ่มความเสียหายถาวรต่อป้อมปราการ และเรียก Voidmite
+                                มาช่วยดันป้อมเมื่อสะสมครบกำหนด</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="obj-wrapper">
+                                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Rift_HeraldSquare.png/48px-Rift_HeraldSquare.png"
+                                        alt="Rift Herald" class="obj-icon">
+                                    <span>Rift Herald</span>
+                                </div>
+                            </td>
+                            <td>ผู้ส่งสารแห่ง Void เกิดช่วงกลางเกม
+                                เมื่อกำจัดจะสามารถอัญเชิญมาช่วยพุ่งชนเพื่อทำลายป้อมปราการได้อย่างรุนแรง</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="obj-wrapper">
+                                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Baron_NashorSquare.png/48px-Baron_NashorSquare.png"
+                                        alt="Baron Nashor" class="obj-icon">
+                                    <span>Baron Nashor</span>
+                                </div>
+                            </td>
+                            <td>บารอน บัฟสุดยอดเพิ่มพลังให้มินเนี่ยนรอบตัว ช่วยให้ดันป้อมและปิดเกมได้ง่าย</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="obj-wrapper">
+                                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Turret_Bulwark_protection_VFX.png/200px-Turret_Bulwark_protection_VFX.png?b602c"
+                                        alt="Turrets" class="obj-icon">
+                                    <span>Turrets</span>
+                                </div>
+                            </td>
+                            <td>ป้อมปราการ การทำลายจะให้เงินรางวัลทีม และขยายอาณาเขตการคุมแผนที่</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="objectives">
+            <h2>มังกรธาตุทั้ง 7 ประเภท</h2>
+
+            <div class="dragon-grid">
+
+                <div class="dragon-card">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Chemtech_DrakeSquare.png/48px-Chemtech_DrakeSquare.png?d765f"
+                        alt="Chemtech Drake" class="dragon-avatar">
+                    <div class="dragon-info">
+                        <h3>Chemtech Drake</h3>
+                        <div class="soul-badge">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Chemtech_Dragon_Soul_buff.png/20px-Chemtech_Dragon_Soul_buff.png?ff73a"
+                                alt="Soul" class="soul-icon">
+                            Chemtech Soul
+                        </div>
+                        <p class="dragon-desc">
+                            เพิ่มการต้านทานสถานะ (Tenacity) และพลังโล่/การฮีล
+                            <br>แถมทำดาเมจแรงขึ้นเมื่อเลือดเหลือน้อย
+                        </p>
+                    </div>
+                </div>
+
+                <div class="dragon-card">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Cloud_DrakeSquare.png/48px-Cloud_DrakeSquare.png?913d8"
+                        alt="Cloud Drake" class="dragon-avatar">
+                    <div class="dragon-info">
+                        <h3>Cloud Drake</h3>
+                        <div class="soul-badge">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Cloud_Dragon_Soul_buff.png/20px-Cloud_Dragon_Soul_buff.png?f3c30"
+                                alt="Soul" class="soul-icon">
+                            Cloud Soul
+                        </div>
+                        <p class="dragon-desc">
+                            เพิ่มความเร็วในการเคลื่อนที่ (Movement Speed) และต้านทานการสโลว์ (Slow Resist)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="dragon-card">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Hextech_DrakeSquare.png/48px-Hextech_DrakeSquare.png?05411"
+                        alt="Hextech Drake" class="dragon-avatar">
+                    <div class="dragon-info">
+                        <h3>Hextech Drake</h3>
+                        <div class="soul-badge">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Hextech_Dragon_Soul_buff.png/20px-Hextech_Dragon_Soul_buff.png?0fea7"
+                                alt="Soul" class="soul-icon">
+                            Hextech Soul
+                        </div>
+                        <p class="dragon-desc">
+                            เพิ่มความเร็วโจมตี (Attack Speed) และเร่งสกิล (Ability Haste)
+                            พร้อมเอฟเฟกต์สายฟ้าช็อตสโลว์เมื่อโจมตี
+                        </p>
+                    </div>
+                </div>
+
+                <div class="dragon-card">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Infernal_DrakeSquare.png/48px-Infernal_DrakeSquare.png?66d58"
+                        alt="Infernal Drake" class="dragon-avatar">
+                    <div class="dragon-info">
+                        <h3>Infernal Drake</h3>
+                        <div class="soul-badge">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Infernal_Dragon_Soul_buff.png/20px-Infernal_Dragon_Soul_buff.png?0c5b0"
+                                alt="Soul" class="soul-icon">
+                            Infernal Soul
+                        </div>
+                        <p class="dragon-desc">
+                            เพิ่มพลังโจมตี (AD) และพลังเวท (AP) เป็นเปอร์เซ็นต์
+                            <br>ช่วยสร้างความเสียหายระเบิดรอบตัวศัตรู
+                        </p>
+                    </div>
+                </div>
+
+                <div class="dragon-card">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Mountain_DrakeSquare.png/48px-Mountain_DrakeSquare.png?d9b77"
+                        alt="Mountain Drake" class="dragon-avatar">
+                    <div class="dragon-info">
+                        <h3>Mountain Drake</h3>
+                        <div class="soul-badge">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Mountain_Dragon_Soul_buff.png/20px-Mountain_Dragon_Soul_buff.png?fea21"
+                                alt="Soul" class="soul-icon">
+                            Mountain Soul
+                        </div>
+                        <p class="dragon-desc">
+                            เพิ่มเกราะ (Armor) และต้านทานเวท (Magic Resist) ช่วยให้ทีมอึดขึ้น
+                        </p>
+                    </div>
+                </div>
+
+                <div class="dragon-card">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Ocean_DrakeSquare.png/48px-Ocean_DrakeSquare.png?cdaa8"
+                        alt="Ocean Drake" class="dragon-avatar">
+                    <div class="dragon-info">
+                        <h3>Ocean Drake</h3>
+                        <div class="soul-badge">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Ocean_Dragon_Soul_buff.png/20px-Ocean_Dragon_Soul_buff.png?cd644"
+                                alt="Soul" class="soul-icon">
+                            Ocean Soul
+                        </div>
+                        <p class="dragon-desc">
+                            ฟื้นฟูพลังชีวิต (HP Regen) เป็นเปอร์เซ็นต์ ช่วยในการยืนเลนและยื้อไฟต์
+                        </p>
+                    </div>
+                </div>
+
+                <div class="dragon-card">
+                    <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Elder_DragonSquare.png/48px-Elder_DragonSquare.png?3aa9b"
+                        alt="Elder Drake" class="dragon-avatar">
+                    <div class="dragon-info">
+                        <h3>Elder Drake</h3>
+                        <div class="soul-badge">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/thumb/Aspect_of_the_Dragon_buff.png/20px-Aspect_of_the_Dragon_buff.png?99a37"
+                                alt="Soul" class="soul-icon">
+                            Elder Soul
+                        </div>
+                        <p class="dragon-desc">
+                            มังกรตัวสุดท้ายที่จะเกิดหลังจากมีทีมใดทีมหนึ่งเก็บ "มังกรครบ 4 ตัว (Dragon Soul)"
+                            บัฟของมันจะช่วยเผาไหม้ศัตรูเป็นความเสียหายจริง
+                            และจะปลิดชีพ (Execute) ศัตรูทันทีหากพลังชีวิตลดลงต่ำกว่าเกณฑ์ที่กำหนด
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. เคล็ดลับ -->
+        <section id="tips">
+            <h2>4. 3 เคล็ดลับสู่ระดับโปร</h2>
+            <div class="tips-container">
+                <p>หากต้องการยกระดับฝีมือ ให้โฟกัสพื้นฐาน 3 อย่างนี้:</p>
+                <ul class="tips-list">
+                    <li><strong>Last Shot (CS) คือหัวใจ:</strong> ฝึกโจมตีมินเนี่ยนทีสุดท้ายเพื่อรับเงิน (Gold) เงินเยอะ
+                        = ไอเทมนำ = โอกาสชนะสูง</li>
+                    <li><strong>Mini-map คือดวงตา:</strong> ชำเลืองมองแผนที่มุมขวาล่างทุกๆ 5-10 วินาที
+                        เพื่อดูตำแหน่งศัตรูและป้องกันการถูกซุ่มโจมตี</li>
+                    <li><strong>การไม่ตายสำคัญกว่าการฆ่า:</strong> การแจกแต้มฆ่าให้ศัตรูทำให้ทีมเสียเปรียบมาก
+                        สู้ไม่ได้ให้ถอยมาตั้งหลักใต้ป้อม</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. แชมเปี้ยน -->
+        <section id="champions" class="champ-section">
+            <h2>เลือกดูคู่มือแชมเปี้ยน</h2>
+            <p>คลิกที่การ์ดเพื่อดูรายละเอียดและวิธีเล่นเบื้องต้นของ Summoner</p>
+
+            <div class="champ-grid">
+                <!-- Sett -->
+                <a href="Sett-guide.html" class="champ-card">
+                    <div class="champ-img-wrapper">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Sett_0.jpg" alt="Sett"
+                            class="champ-img">
+                    </div>
+                    <div class="champ-info">
+                        <h3>Sett</h3>
+                        <p>The Boss</p>
+                        <span class="lane-badge">Top Lane</span>
+                    </div>
+                </a>
+
+                <!-- Pantheon -->
+                <a href="Pantheon-guide.html" class="champ-card">
+                    <div class="champ-img-wrapper">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Pantheon_0.jpg"
+                            alt="Pantheon" class="champ-img">
+                    </div>
+                    <div class="champ-info">
+                        <h3>Pantheon</h3>
+                        <p>The Unbreakable Spear</p>
+                        <span class="lane-badge">Top / Mid / Sup</span>
+                    </div>
+                </a>
+
+                <!-- Viego -->
+                <a href="Viego-guide.html" class="champ-card">
+                    <div class="champ-img-wrapper">
+                        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Viego_0.jpg" alt="Viego"
+                            class="champ-img">
+                    </div>
+                    <div class="champ-info">
+                        <h3>Viego</h3>
+                        <p>The Ruined King</p>
+                        <span class="lane-badge">Jungle</span>
+                    </div>
+                </a>
+
+                <!-- Volibear -->
+                <a href="Volibear-guide.html" class="champ-card">
+                    <div class="champ-img-wrapper">
+                        <img src="https://wiki.leagueoflegends.com/en-us/images/Volibear_OriginalSkin.jpg?e688e" alt="Volibear"
+                            class="champ-img">
+                    </div>
+                    <div class="champ-info">
+                        <h3>Volibear</h3>
+                        <p>The Relentless Storm</p>
+                        <span class="lane-badge">Top / Jungle</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 LoL Beginner Guide. Content is available under CC BY-NC-SA 3.0 unless otherwise noted.</p>
+        <p>This site is not affiliated with Riot Games.</p>
+    </footer>
+
+</body>
+
+</html>
