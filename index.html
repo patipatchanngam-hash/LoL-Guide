@@ -14,6 +14,10 @@
             font-family: 'Helvetica Neue', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        img {
+            max-width: 100%;
+        }
+
         /* สีหลักของธีม */
         :root {
             --bg-dark: #03070d;
@@ -216,7 +220,7 @@
         /* --- 2. Positions: Grid & Cards --- */
         .position-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 25px;
         }
 
@@ -349,7 +353,7 @@
         /* Dragon Section */
         .dragon-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
             gap: 25px;
             margin-top: 30px;
         }
@@ -495,7 +499,7 @@
 
         .champ-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
             gap: 30px;
             margin-top: 50px;
         }
@@ -645,7 +649,7 @@
 
         @media (max-width: 768px) {
             header {
-                min-height: 620px;
+                min-height: min(620px, 100svh);
                 height: auto;
                 padding-top: 78px;
                 background-position: 62% 0%;
@@ -684,11 +688,17 @@
         @media (max-width: 520px) {
             header {
                 padding-inline: 18px;
+                min-height: 560px;
             }
 
             .hero-actions,
             .hero-btn {
                 width: 100%;
+            }
+
+            .hero-btn {
+                padding-inline: 14px;
+                text-align: center;
             }
 
             .scroll-down {
@@ -701,6 +711,12 @@
 
             .champ-img-wrapper {
                 height: 280px;
+            }
+
+            .pos-card,
+            .dragon-card,
+            .tips-container {
+                padding: 20px;
             }
         }
     </style>

@@ -14,10 +14,16 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        img,
+        video {
+            max-width: 100%;
+        }
+
         body {
             background-color: #050811;
             color: #f0e6d2;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* ปรับแต่ง Scrollbar */
@@ -42,7 +48,8 @@
         /* --- HERO SECTION --- */
         header {
             position: relative;
-            height: 550px;
+            min-height: 550px;
+            height: min(72vh, 650px);
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -65,7 +72,7 @@
             z-index: 3;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 88px clamp(20px, 5vw, 40px) 48px;
             width: 100%;
         }
 
@@ -74,26 +81,26 @@
         }
 
         header h1 {
-            font-size: 5rem;
+            font-size: clamp(3.2rem, 10vw, 5rem);
             color: #f0e6d2;
             text-transform: uppercase;
             margin-bottom: 5px;
             text-shadow: 0px 0px 25px rgba(200, 170, 110, 0.6);
-            letter-spacing: 6px;
+            letter-spacing: clamp(2px, 1vw, 6px);
             font-weight: 800;
         }
 
         header .subtitle {
-            font-size: 1.8rem;
+            font-size: clamp(1.25rem, 4vw, 1.8rem);
             color: #4a90e2;
             margin-bottom: 20px;
             font-style: italic;
-            letter-spacing: 2px;
+            letter-spacing: 0;
             text-shadow: 0px 2px 4px rgba(74, 144, 226, 0.5);
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.8vw, 1.2rem);
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
             color: #a3c7ce;
         }
@@ -102,7 +109,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: clamp(28px, 5vw, 40px) clamp(14px, 4vw, 20px);
         }
 
         section {
@@ -115,8 +122,9 @@
             border-bottom: 2px solid #4a90e2;
             padding-bottom: 10px;
             margin-bottom: 35px;
-            font-size: 2rem;
+            font-size: clamp(1.45rem, 5vw, 2rem);
             text-shadow: 0 0 10px rgba(200, 170, 110, 0.2);
+            overflow-wrap: anywhere;
         }
 
         /* ปุ่มเลือกตำแหน่ง (Lane Tabs) */
@@ -129,6 +137,7 @@
             padding: 10px;
             border-radius: 8px;
             border: 1px solid #1a2642;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
@@ -195,7 +204,7 @@
             background-color: #0b1121;
             border: 1px solid #1a2642;
             border-radius: 8px;
-            padding: 30px;
+            padding: clamp(16px, 4vw, 30px);
         }
 
         .ability-tabs {
@@ -205,6 +214,7 @@
             margin-bottom: 30px;
             border-bottom: 1px solid #1a2642;
             padding-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .ability-tabs .ability-btn {
@@ -292,6 +302,7 @@
 
         .ability-info {
             flex: 1;
+            min-width: 0;
         }
 
         .ability-info h3 {
@@ -358,6 +369,7 @@
             padding: 15px;
             border-radius: 6px;
             border-left: 4px solid #c8aa6e;
+            flex-wrap: wrap;
         }
 
         .priority-label {
@@ -370,6 +382,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .priority-badge {
@@ -486,6 +499,7 @@
             border: 1px solid #1a2642;
             border-radius: 8px;
             padding: 25px;
+            min-width: 0;
         }
 
         .tree-header {
@@ -554,6 +568,7 @@
             font-size: 0.9rem;
             color: #a2b4db;
             line-height: 1.4;
+            overflow-wrap: anywhere;
         }
 
         .shards-box {
@@ -597,6 +612,7 @@
             gap: 15px;
             flex-wrap: wrap;
             padding: 5px 0;
+            align-items: center;
         }
 
         .item-img-wrap {
@@ -745,6 +761,116 @@
             transform: translateX(-4px);
         }
 
+        @media (max-width: 767px) {
+            header {
+                min-height: 500px;
+                height: auto;
+                align-items: flex-end;
+            }
+
+            .header-bg {
+                background:
+                    linear-gradient(to bottom, rgba(6, 10, 15, 0.25), rgba(6, 10, 15, 0.96) 72%),
+                    url('https://wiki.leagueoflegends.com/en-us/images/Volibear_OriginalSkin.jpg?e688e') no-repeat 68% 12%/cover;
+            }
+
+            .header-content {
+                padding-top: 120px;
+            }
+
+            section {
+                margin-bottom: 44px;
+            }
+
+            .intro-box {
+                padding: 18px;
+            }
+
+            .tab-btn {
+                flex: 1 1 140px;
+                justify-content: center;
+                padding-inline: 14px;
+            }
+
+            .ability-tabs .ability-btn {
+                width: 64px;
+                padding: 6px;
+                flex: 0 0 64px;
+            }
+
+            .ability-tabs .ability-btn img {
+                width: 44px;
+                height: 44px;
+            }
+
+            .ability-content.active {
+                gap: 18px;
+            }
+
+            .skill-priority-box {
+                align-items: flex-start;
+            }
+
+            .rune-row,
+            .tree-header {
+                gap: 12px;
+            }
+
+            .rune-tree {
+                padding: 18px;
+            }
+
+            #items table,
+            #items thead,
+            #items tbody,
+            #items tr,
+            #items th,
+            #items td {
+                display: block;
+                width: 100% !important;
+            }
+
+            #items thead {
+                display: none;
+            }
+
+            #items tr {
+                border: 1px solid #1a2642;
+                margin-bottom: 14px;
+                background-color: #0b1121;
+            }
+
+            #items td {
+                border: 0;
+                padding: 14px;
+            }
+
+            #items td:first-child {
+                border-bottom: 1px solid #1a2642;
+                background-color: #111a33;
+            }
+
+            .item-img-wrap .tooltip-box {
+                position: fixed;
+                left: 14px;
+                right: 14px;
+                bottom: 18px;
+                width: auto;
+                max-height: 62vh;
+                overflow-y: auto;
+                transform: translateY(12px) scale(0.98);
+                z-index: 200;
+            }
+
+            .item-img-wrap .tooltip-box::before {
+                display: none;
+            }
+
+            .item-img-wrap:hover .tooltip-box {
+                transform: translateY(0) scale(1);
+            }
+        }
+
         @media (max-width: 480px) {
             .back-to-home {
                 top: 15px;
@@ -758,11 +884,35 @@
             }
 
             header h1 {
-                font-size: 3.2rem;
+                font-size: clamp(2.5rem, 14vw, 3.2rem);
             }
 
             header .subtitle {
                 font-size: 1.3rem;
+            }
+
+            .container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .rune-row {
+                align-items: flex-start;
+                padding: 8px 0;
+            }
+
+            .rune-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .rune-icon.big {
+                width: 48px;
+                height: 48px;
+            }
+
+            .item-display-flex {
+                gap: 12px;
             }
         }
     </style>
@@ -960,16 +1110,22 @@
                             </div>
                         </div>
                         <div class="rune-row">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/Presence_of_Mind_rune.png?e7596"
+                                alt="Presence of Mind" class="rune-icon">
                             <div class="rune-detail"><strong>Presence of Mind</strong>
                                 <p>ช่วยฟื้นฟูมานาเวลาสู้กับแชมเปี้ยนศัตรู ป้องกันมานาหมดจากการกด W ตอดเลือด</p>
                             </div>
                         </div>
                         <div class="rune-row">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/Legend-_Alacrity_rune.png?4afd0"
+                                alt="Legend: Alacrity" class="rune-icon">
                             <div class="rune-detail"><strong>Legend: Alacrity</strong>
                                 <p>มอบโบนัสความเร็วโจมตีถาวร ช่วยให้เคลียร์มินเนี่ยนและเก็บพาสซีฟสายฟ้าได้ไวขึ้น</p>
                             </div>
                         </div>
                         <div class="rune-row">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/Last_Stand_rune.png?e94e6"
+                                alt="Last Stand" class="rune-icon">
                             <div class="rune-detail"><strong>Last Stand</strong>
                                 <p>สร้างดาเมจแรงขึ้นเมื่อพลังชีวิตเราเหลือน้อย คอมโบดีมากกับจังหวะกด W กดสวนพลิกชีวิต
                                 </p>
@@ -980,16 +1136,43 @@
                         <div class="tree-header">
                             <h3>รูนรอง: Resolve</h3>
                         </div>
-                        <div class="rune-row">
+                        <div class="rune-row"><img
+                                src="https://wiki.leagueoflegends.com/en-us/images/Shield_Bash_rune.png?18079"
+                                alt="Shield Bash" class="rune-icon">
                             <div class="rune-detail"><strong>Shield Bash</strong>
                                 <p>เมื่อได้รับโล่ป้องกันจากสกิล E การโจมตีถัดไปจะรุนแรงขึ้นและเพิ่มเกราะต้านทานชั่วคราว
                                 </p>
                             </div>
                         </div>
                         <div class="rune-row">
+                            <img src="https://wiki.leagueoflegends.com/en-us/images/Revitalize_rune.png?07dd7"
+                                alt="Revitalize" class="rune-icon">
                             <div class="rune-detail"><strong>Revitalize</strong>
                                 <p>ช่วยเพิ่มประสิทธิภาพการฮีลของสกิล W และเพิ่มความหนาของโล่จากสกิล E ขึ้นอีก 5%</p>
                             </div>
+                        </div>
+                        <div class="shards-box">
+                            <h4>Rune Shards (รูนสเตตัสเสริม)</h4>
+                            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                        alt="Adaptive Force"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>Adaptive Force:</strong> Adaptive Force +9 หน่วย</span>
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png"
+                                        alt="Adaptive Force"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>Adaptive Force:</strong> Adaptive Force +9 หน่วย</span>
+                                </li>
+                                <li style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://cdn.mobalytics.gg/assets/lol/images/perks/5001.svg?v9" alt="Armor"
+                                        style="width: 24px; height: 24px; background-color: #0b070d; border-radius: 50%; padding: 2px; border: 1px solid #42283b;">
+                                    <span><strong>พลังชีวิตที่เพิ่มขึ้น:</strong> พลังชีวิต +10-180 หน่วย
+                                        (ขึ้นอยู่กับเลเวล)</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -1946,7 +2129,7 @@
                                                     มาช่วยคุณในการต่อสู้กับสัตว์ป่า</p>
                                                 <span class="effect-title">Unique (Gustwalker's Gait):</span>
                                                 <p>
-                                                    
+
                                                 </p>
                                             </div>
                                         </span>
